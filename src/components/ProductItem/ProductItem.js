@@ -3,7 +3,7 @@ import './ProductItem.css';
 const ProductItem = ({ id, name, price, sold, revenue, imageUrl, status }) => (
 	<div className="product-item" key={id}>
 		<img
-			// Replace this url with imageUrl
+			// Cac
 			src={'https://www.tierra.vn/files/800x/nch1003_1-1--IlKUfJUpkW.webp'}
 			alt={name}
 			className="product-image"
