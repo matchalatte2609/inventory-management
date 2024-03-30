@@ -1,20 +1,27 @@
+const products = [];
+
 const getAllProducts = async () => {
 	return [
 		{
-			name: 'Ring',
-			id: 1,
+			name: 'Ring 1',
+			price: 3000,
+			imageUrl: 'https://www.tierra.vn/files/800x/nch1003_1-1--IlKUfJUpkW.webp',
 		},
-		{ name: 'Bracelet', id: 2 },
-		{},
-		{},
-		{},
-		{},
-		{},
-		{},
-		{},
-		{},
-		{},
-		{},
+		{
+			name: 'Ring 2',
+			price: 2110,
+			imageUrl: 'https://www.tierra.vn/files/800x/nch1003_1-1--IlKUfJUpkW.webp',
+		},
+		{
+			name: 'Ring 3',
+			price: 3000,
+			imageUrl: 'https://www.tierra.vn/files/800x/nch1003_1-1--IlKUfJUpkW.webp',
+		},
+		{
+			name: 'Ring 4',
+			price: 3000,
+			imageUrl: 'https://www.tierra.vn/files/800x/nch1003_1-1--IlKUfJUpkW.webp',
+		},
 	];
 };
 
