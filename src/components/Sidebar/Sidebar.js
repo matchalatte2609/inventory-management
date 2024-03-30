@@ -24,7 +24,7 @@ const Sidebar = () => {
 				</div>
 			</div>
 			<div className="nav-buttons">
-				<Link to="/home" className="nav-btn active">
+				<Link to="/home" className="nav-btn">
 					<img src={homeIcon} alt="Home" className="icon" /> Home
 				</Link>
 				<Link to="/products" className="nav-btn">
