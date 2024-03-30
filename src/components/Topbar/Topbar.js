@@ -7,7 +7,7 @@ const Topbar = ({ onSearch, onAddProduct }) => (
 			className="search-bar"
 			onChange={onSearch}
 		/>
-		<button className="button" onClick={onAddProduct}>
+		<button className="topbar-button" onClick={onAddProduct}>
 			New Product
 		</button>
 	</div>

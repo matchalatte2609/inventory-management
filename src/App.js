@@ -1,7 +1,17 @@
 import './App.css';
-import Homepage from './components/Homepage/Homepage.js';
-const App = () => {
-	return <Homepage />;
-};
+import Products from './pages/Products/Products.js';
+import Sidebar from './components/Sidebar/Sidebar.js';
+import Topbar from './components/Topbar/Topbar.js';
 
+const App = () => {
+	return (
+		<div className="app-container">
+			<Sidebar />
+			<div className="main-content">
+				<Topbar />
+				<Products />
+			</div>
+		</div>
+	);
+};
 export default App;

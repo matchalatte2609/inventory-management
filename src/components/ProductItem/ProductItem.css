@@ -36,7 +36,8 @@
 .button {
 	color: #593c2a;
 	background: #dcc4b6;
-	border-radius: 30px;}
+	border-radius: 30px;
+}
 .product-name {
 	flex-grow: 2; /* Adjust the grow factor as needed */
 }
