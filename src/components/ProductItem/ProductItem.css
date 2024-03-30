@@ -24,15 +24,6 @@
 	align-items: center;
 }
 
-.product-name,
-.product-price,
-.product-sold,
-.product-revenue,
-.product-status {
-	margin-right: 1rem;
-	/* Add more styling as needed */
-}
-
 .product-actions {
 	display: flex;
 	align-items: center;
@@ -42,6 +33,20 @@
 	}
 }
 
-.button {
-	/* Add button styles here */
+.product-name {
+	flex-grow: 2; /* Adjust the grow factor as needed */
+}
+.product-name,
+.product-price,
+.product-sold,
+.product-revenue,
+.product-status {
+	flex-grow: 1;
+	text-align: center; /* Ensures alignment under headers */
+}
+
+.product-actions {
+	flex-grow: 1;
+	display: flex;
+	justify-content: flex-end;
 }

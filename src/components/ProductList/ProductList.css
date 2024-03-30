@@ -1,11 +1,46 @@
-.product-list {
-	margin-top: 20px;
+.product-page-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
 }
 
-.table-header {
+.product-list-header {
 	display: flex;
-	justify-content: space-between;
-	font-weight: bold;
+	flex-direction: column;
 	padding: 10px;
-	border-bottom: 2px solid #e0e0e0;
+	margin-bottom: 20px; /* Adjust as per your spacing needs */
+}
+
+.filters {
+	display: flex;
+	justify-content: flex-end; /* Align filter buttons to the right */
+	gap: 10px; /* Spacing between buttons */
+	margin-bottom: 10px; /* Space between buttons and product headers */
+}
+
+.filter-button {
+	padding: 8px 16px; /* Sample padding, adjust as needed */
+	background-color: #6200ee; /* Sample background color */
+	color: white;
+	border: none;
+	cursor: pointer;
+	border-radius: 4px; /* Optional: for rounded corners */
+	/* No margin-left needed because gap takes care of spacing */
+}
+
+.filter-button:hover {
+	background-color: #3700b3; /* Darker shade on hover */
+}
+
+.product-headers {
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr 1fr 1fr 2fr; /* Adjust the fractions to match your layout */
+	gap: 10px; /* This will give space between your columns */
+	font-weight: 600;
+	text-transform: uppercase;
+	padding: 0px 0;
+}
+
+.product-list {
+	margin-top: 0; /* Adjust top margin as needed, if at all */
 }
