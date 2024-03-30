@@ -1,5 +1,77 @@
 .sidebar {
-	width: 200px;
-	background-color: #f0f0f0;
+	width: 250px;
+	height: 100vh;
+	background-color: #dcc4b6;
 	padding: 20px;
-}
+	box-sizing: border-box;
+  }
+  
+  .logo-container {
+	height: 60px;
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  }
+  
+  .logo-container img {
+	max-height: 100%;
+	max-width: 100%;
+  }
+  
+  .user-container {
+	padding: 20px;
+	border-radius: 8px;
+	background-color: #dcc4b6;
+	margin-bottom: 20px;
+	text-align: center;
+	font-weight: 800;
+	color: #593c2a;
+  }
+  
+  .user-avatar {
+	/* Add styling for user avatar here */
+  }
+  
+  .user-name {
+	font-size: 18px;
+	margin-top: 10px;
+  }
+  
+  .nav-buttons {
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .nav-btn {
+	background: transparent;
+	border: none;
+	color: #593c2a;
+	padding: 10px 20px;
+	text-align: left;
+	font-size: 18px;
+	font-weight: 600;
+	margin-bottom: 10px;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background 0.3s ease;
+  }
+  
+  .nav-btn:hover,
+  .nav-btn.active {
+	background-color: #c7a996;
+  }
+  
+  .nav-btn {
+	/* Existing styles */
+	display: flex;
+	align-items: center;
+  }
+  
+  .icon {
+	margin-right: 10px; /* Adjust the space between icon and text as needed */
+	width: 24px; /* Or the size of your icons */
+	height: auto;
+  }
+  
+  
