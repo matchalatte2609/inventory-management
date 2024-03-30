@@ -1,0 +1,11 @@
+.product-list {
+	margin-top: 20px;
+}
+
+.table-header {
+	display: flex;
+	justify-content: space-between;
+	font-weight: bold;
+	padding: 10px;
+	border-bottom: 2px solid #e0e0e0;
+}

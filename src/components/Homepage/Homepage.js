@@ -1,10 +1,15 @@
 import Topbar from '../Topbar/Topbar.js';
 import ProductList from '../ProductList/ProductList.js';
+import Sidebar from '../Sidebar/Sidebar.js';
+
 const Homepage = () => {
 	return (
-		<div style={{ display: 'flex' }}>
-			<Topbar />
-			<ProductList products={[{ name: 'cac' }]} />
+		<div className="app-container">
+			<Sidebar />
+			<div className="main-content">
+				<Topbar />
+				<ProductList products={[{ name: 'prod1' }, { name: 'prod1' }]} />
+			</div>
 		</div>
 	);
 };
