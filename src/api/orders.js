@@ -34,4 +34,4 @@ const ordersApi = {
 	deleteOrder: (id) => {},
 };
 
-return;
+export default ordersApi;
