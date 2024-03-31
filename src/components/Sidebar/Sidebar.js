@@ -30,19 +30,19 @@ const Sidebar = () => {
 				<Link to="/products" className="nav-btn">
 					<img src={productsIcon} alt="Products" className="icon" /> Products
 				</Link>
-				<button className="nav-btn">
+				<Link to="/analytics" className="nav-btn">
 					<img src={analyticsIcon} alt="Analytics" className="icon" /> Analytics
-				</button>
-				<button className="nav-btn">
+				</Link>
+				<Link to="/transactions" className="nav-btn">
 					<img src={transactionsIcon} alt="Transactions" className="icon" />{' '}
 					Transactions
-				</button>
-				<button className="nav-btn">
+				</Link>
+				<Link to="/community" className="nav-btn">
 					<img src={communityIcon} alt="Community" className="icon" /> Community
-				</button>
-				<button className="nav-btn">
+				</Link>
+				<Link to="/settings" className="nav-btn">
 					<img src={settingsIcon} alt="Settings" className="icon" /> Settings
-				</button>
+				</Link>
 			</div>
 		</div>
 	);
