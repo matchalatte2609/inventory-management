@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Dropdown } from 'react-bootstrap';
+import { Dropdown, Button, Modal, Form } from 'react-bootstrap';
 import ProductItem from '../../components/ProductItem/ProductItem.js';
 import productsApi from '../../api/products';
 import Topbar from '../../components/Topbar/Topbar.js';
@@ -14,6 +14,11 @@ const Products = () => {
 	}, []);
 
 	const [sortOption, setSortOption] = useState('');
+	const [filterOption, setFilterOption] = useState('');
+
+	const [showFilterModal, setShowFilterModal] = useState(false);
+	const [minPrice, setMinPrice] = useState('');
+	const [maxPrice, setMaxPrice] = useState('');
 
 	const handleSelectSortOptions = (eventKey, event) => {
 		let sortedProducts;
@@ -38,15 +43,26 @@ const Products = () => {
 		}
 		setProductListData(sortedProducts);
 	};
+
+	const applyPriceFilter = () => {
+		const filteredProducts = productsApi.getAllProducts().filter((product) => {
+			const price = parseFloat(product.price); // Assuming product.price is a string that represents a number
+			return (
+				(!minPrice || price >= parseFloat(minPrice)) &&
+				(!maxPrice || price <= parseFloat(maxPrice))
+			);
+		});
+		setProductListData(filteredProducts);
+	};
 	return (
 		<div className="product-page-container">
 			<Topbar />
 			<div className="product-list-header">
 				<div className="filters">
 					<button className="filter-button">All Products ▼</button>
-					<button className="filter-button">Filter</button>
+					{/* Sort Button */}
 					<Dropdown className="" onSelect={handleSelectSortOptions}>
-						<Dropdown.Toggle variant="secondary" id="dropdown-basic">
+						<Dropdown.Toggle variant="secondary">
 							{sortOption === '' ? 'Sort Products' : sortOption}
 						</Dropdown.Toggle>
 						<Dropdown.Menu>
@@ -60,7 +76,63 @@ const Products = () => {
 							{/* Add more Dropdown.Item as needed */}
 						</Dropdown.Menu>
 					</Dropdown>
-					<button className="filter-button">Export</button>
+					{/* Filter Button */}
+					<Button
+						variant="secondary"
+						onClick={() => {
+							setShowFilterModal(true);
+						}}
+					>
+						Filter
+					</Button>
+					<Modal
+						show={showFilterModal}
+						onHide={() => setShowFilterModal(false)}
+					>
+						<Modal.Header closeButton>
+							<Modal.Title>Filter Products</Modal.Title>
+						</Modal.Header>
+						<Modal.Body>
+							<Form>
+								<Form.Group controlId="formMinPrice">
+									<Form.Label>Minimum Price</Form.Label>
+									<Form.Control
+										type="number"
+										placeholder="Enter minimum price"
+										value={minPrice}
+										onChange={(e) => setMinPrice(e.target.value)}
+									/>
+								</Form.Group>
+								<Form.Group controlId="formMaxPrice">
+									<Form.Label>Maximum Price</Form.Label>
+									<Form.Control
+										type="number"
+										placeholder="Enter maximum price"
+										value={maxPrice}
+										onChange={(e) => setMaxPrice(e.target.value)}
+									/>
+								</Form.Group>
+							</Form>
+						</Modal.Body>
+						<Modal.Footer>
+							<Button
+								variant="secondary"
+								onClick={() => setShowFilterModal(false)}
+							>
+								Close
+							</Button>
+							<Button
+								variant="primary"
+								onClick={() => {
+									applyPriceFilter();
+									setShowFilterModal(false);
+								}}
+							>
+								Apply Filters
+							</Button>
+						</Modal.Footer>
+					</Modal>
+					<Button variant="secondary">Export</Button>
 				</div>
 				<div className="product-headers">
 					<span>PRODUCT</span>
