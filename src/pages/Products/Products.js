@@ -1,6 +1,7 @@
 import ProductItem from '../../components/ProductItem/ProductItem.js';
 import { useEffect, useState } from 'react';
 import productsApi from '../../api/products';
+import Topbar from '../../components/Topbar/Topbar.js';
 import './Products.css';
 
 const Products = () => {
@@ -11,6 +12,7 @@ const Products = () => {
 	});
 	return (
 		<div className="product-page-container">
+			<Topbar />
 			<div className="product-list-header">
 				<div className="filters">
 					<button className="filter-button">All Products ▼</button>

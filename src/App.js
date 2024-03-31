@@ -12,7 +12,6 @@ const App = () => {
 			<div className="app-container">
 				<Sidebar />
 				<div className="main-content">
-					<Topbar />
 					<Routes>
 						{/* Replace <Home /> with your actual home component */}
 						<Route path="/home" element={<Home />} />
