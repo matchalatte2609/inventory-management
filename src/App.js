@@ -4,6 +4,8 @@ import Home from './pages/Home/Home.js';
 import Products from './pages/Products/Products.js';
 import Sidebar from './components/Sidebar/Sidebar.js';
 import Topbar from './components/Topbar/Topbar.js';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 // Import other pages/components you want to route to
 
 const App = () => {
