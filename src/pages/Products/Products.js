@@ -14,7 +14,6 @@ const Products = () => {
 	}, []);
 
 	const [sortOption, setSortOption] = useState('');
-	const [filterOption, setFilterOption] = useState('');
 
 	const [showFilterModal, setShowFilterModal] = useState(false);
 	const [minPrice, setMinPrice] = useState('');
@@ -85,6 +84,7 @@ const Products = () => {
 					>
 						Filter
 					</Button>
+					{/* Filter Modal */}
 					<Modal
 						show={showFilterModal}
 						onHide={() => setShowFilterModal(false)}
@@ -115,12 +115,8 @@ const Products = () => {
 							</Form>
 						</Modal.Body>
 						<Modal.Footer>
-							<Button
-								variant="secondary"
-								onClick={() => setShowFilterModal(false)}
-							>
-								Close
-							</Button>
+							<Button variant="warning">Reset Filters</Button>
+
 							<Button
 								variant="primary"
 								onClick={() => {
@@ -129,6 +125,13 @@ const Products = () => {
 								}}
 							>
 								Apply Filters
+							</Button>
+
+							<Button
+								variant="danger"
+								onClick={() => setShowFilterModal(false)}
+							>
+								Close
 							</Button>
 						</Modal.Footer>
 					</Modal>
