@@ -3,6 +3,7 @@ import './App.css';
 import Home from './pages/Home/Home.js';
 import Products from './pages/Products/Products.js';
 import Sidebar from './components/Sidebar/Sidebar.js';
+import Inventory from './pages/Inventory/Inventory.js'
 import Topbar from './components/Topbar/Topbar.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -15,9 +16,9 @@ const App = () => {
 				<Sidebar />
 				<div className="main-content">
 					<Routes>
-						{/* Replace <Home /> with your actual home component */}
 						<Route path="/home" element={<Home />} />
 						<Route path="/products" element={<Products />} />
+						<Route path='/inventory' element={<Inventory/>} />
 					</Routes>
 				</div>
 			</div>

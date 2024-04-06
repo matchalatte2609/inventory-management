@@ -10,6 +10,8 @@ import analyticsIcon from '../Assets/bar-chart-icon.png';
 import transactionsIcon from '../Assets/transaction-icon.png';
 import communityIcon from '../Assets/community-icon.png';
 import settingsIcon from '../Assets/settings-icon.png';
+import inventoryIcon from '../Assets/inventory-icon.png';
+
 
 const Sidebar = () => {
 	return (
@@ -34,8 +36,11 @@ const Sidebar = () => {
 					<img src={analyticsIcon} alt="Analytics" className="icon" /> Analytics
 				</Link>
 				<Link to="/transactions" className="nav-btn">
-					<img src={transactionsIcon} alt="Transactions" className="icon" />{' '}
+					<img src={transactionsIcon} alt="Transactions" className="icon" />
 					Transactions
+				</Link>
+				<Link to='/inventory' className='nav-btn'>
+					<img src={inventoryIcon} alt='Inventory' className='icon'/> Inventory
 				</Link>
 				<Link to="/community" className="nav-btn">
 					<img src={communityIcon} alt="Community" className="icon" /> Community
