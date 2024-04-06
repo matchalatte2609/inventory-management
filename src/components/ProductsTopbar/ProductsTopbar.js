@@ -1,4 +1,4 @@
-import './Topbar.css';
+import './ProductsTopbar.css';
 const Topbar = ({ onSearch, onAddProduct }) => (
 	<div className="header">
 		<input

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Dropdown, Button, Modal, Form } from 'react-bootstrap';
 import ProductItem from '../../components/ProductItem/ProductItem.js';
 import productsApi from '../../api/products';
-import Topbar from '../../components/Topbar/Topbar.js';
+import Topbar from '../../components/ProductsTopbar/ProductsTopbar.js';
 import './Products.css';
 
 const Products = () => {
@@ -36,9 +36,8 @@ const Products = () => {
 					a.name.localeCompare(b.name)
 				);
 				break;
-			// Add more sorting cases as needed
 			default:
-				sortedProducts = [...productListData]; // Maybe fetch again or sort in another way
+				sortedProducts = [...productListData];
 		}
 		setProductListData(sortedProducts);
 	};
