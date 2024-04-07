@@ -1,0 +1,57 @@
+/* ProductItem.css */
+.product-item {
+	display: flex;
+	align-items: center;
+	margin-bottom: 1rem;
+	padding: 0.5rem;
+	background-color: #fff;
+	border-radius: 4px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+	width: 64px; /* Set your desired size */
+	height: 64px;
+	margin-right: 1rem;
+	object-fit: cover;
+	border-radius: 4px;
+}
+
+.product-info {
+	flex-grow: 1;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.product-actions {
+	display: flex;
+	align-items: center;
+	/* If you want some space between buttons */
+	& > .button {
+		margin-left: 0.5rem;
+	}
+}
+
+.product-button {
+	color: #593c2a;
+	background: #dcc4b6;
+	border-radius: 30px;
+}
+.product-name {
+	flex-grow: 2; /* Adjust the grow factor as needed */
+}
+.product-name,
+.product-price,
+.product-sold,
+.product-revenue,
+.product-status {
+	flex-grow: 1;
+	text-align: center; /* Ensures alignment under headers */
+}
+
+.product-actions {
+	flex-grow: 1;
+	display: flex;
+	justify-content: flex-end;
+}
