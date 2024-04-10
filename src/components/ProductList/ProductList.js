@@ -2,6 +2,8 @@ import ProductItem from '../ProductItem/ProductItem.js';
 import './ProductList.css';
 
 const ProductList = ({ products }) => {
+	
+
 	return (
 		<div className="product-page-container">
 			<div className="product-list-header">
@@ -11,13 +13,13 @@ const ProductList = ({ products }) => {
 					<button className="button filter-button">Sort</button>
 					<button className="button filter-button">Export</button>
 				</div>
-				<div className="product-headers">
-					<span>PRODUCT</span>
-					<span>PRICE</span>
-					<span>SALE</span>
-					<span>REVENUE</span>
-					<span>STATUS</span>
-					<span>ACTIONS</span>
+				<div className="product-header">
+					<div>Product Name</div>
+					<div>Category</div>
+					<div>Product ID</div>
+					<div>Stock Level</div>
+					<div>Status</div>
+					<div>Actions</div>
 				</div>
 			</div>
 			<div className="product-list">

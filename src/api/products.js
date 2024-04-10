@@ -3,21 +3,39 @@ const products = [
 		name: 'Ring 1',
 		price: 3000,
 		imageUrl: 'https://www.tierra.vn/files/800x/nch1003_1-1--IlKUfJUpkW.webp',
+		status: '',
+		productID: '',
+		stockLevel: '',
+
 	},
 	{
 		name: 'Ring 2',
 		price: 2110,
 		imageUrl: 'https://www.tierra.vn/files/800x/nch1003_1-1--IlKUfJUpkW.webp',
+		status: '',
+		productID: '',
+		stockLevel: '',
+		category: ''
 	},
 	{
 		name: 'Ring 3',
 		price: 3000,
 		imageUrl: 'https://www.tierra.vn/files/800x/nch1003_1-1--IlKUfJUpkW.webp',
+		status: '',
+		productID: '',
+		stockLevel: '',
+		category: ''
+
 	},
 	{
 		name: 'Ring 4',
 		price: 3000,
 		imageUrl: 'https://www.tierra.vn/files/800x/nch1003_1-1--IlKUfJUpkW.webp',
+		status: '',
+		productID: '',
+		stockLevel: '',
+		category: ''
+
 	},
 ];
 const productsApi = {

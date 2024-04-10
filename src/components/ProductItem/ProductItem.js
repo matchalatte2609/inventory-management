@@ -1,20 +1,35 @@
 import './ProductItem.css';
 
-const ProductItem = ({ id, name, price, sold, revenue, imageUrl, status }) => (
-	<div className="product-item" key={id}>
-		<img src={imageUrl} alt={name} className="product-image" />
-		<div className="product-info">
-			<div className="product-name">{name}</div>
-			<div className="product-price">{price}</div>
-			<div className="product-sold">{sold}</div>
-			<div className="product-revenue">{revenue}</div>
-			<div className="product-status">{status}</div>
-		</div>
-		<div className="product-actions">
-			<button className="button">Edit</button>
-			<button className="button">Delete</button>
-		</div>
-	</div>
-);
+
+const ProductItem = ({ name, category, productID, stockLevel, status, imageUrl }) => {
+	const calculateStockLevelPercentage = (stockLevel) => {
+		const maxStockLevel = 100; // This should be your actual maximum stock level
+		return (stockLevel / maxStockLevel) * 100;
+	  };
+	
+	return (
+	  <div className="product-item">
+			<div className="product-image-container">
+			<img className="product-image" src={imageUrl} alt={name} />
+			</div>
+				<div className="product-name">{name}</div>
+				<div className="product-category">{category}</div>
+				<div className="product-id">{productID}</div>
+				<div className="product-stock-level">
+				<div className="stock-level-bar-container">
+					<div 
+					className="stock-level-bar" 
+					style={{ width: `${calculateStockLevelPercentage(stockLevel)}%` }}
+					></div>
+				</div>
+				{stockLevel}
+				</div>
+				<div className={`product-status ${status.toLowerCase()}`}>{status}</div>
+				<div className="product-actions">
+			</div>
+	  </div>
+	);
+  };
+  
 
 export default ProductItem;
