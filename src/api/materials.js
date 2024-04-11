@@ -2,11 +2,11 @@ import axios from 'axios';
 
 const backendUrl = process.env.BACKEND_URL || 'http://localhost:5002';
 
-const productsApi = {
-	getAllProducts: () => {
+const materialsApi = {
+	getAllProductsMaterials: () => {
 		// Returns the promise from the axios.get call
 		return axios
-			.get(`${backendUrl}/products`)
+			.get(`${backendUrl}/materials`)
 			.then((response) => {
 				// You would typically return the data here so the calling function can use it
 				return response.data;
@@ -18,4 +18,4 @@ const productsApi = {
 	},
 };
 
-export default productsApi;
+export default materialsApi;

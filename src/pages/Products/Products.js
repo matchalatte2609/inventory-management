@@ -9,8 +9,10 @@ const Products = () => {
 	const [productListData, setProductListData] = useState([]);
 
 	useEffect(() => {
-		const data = productsApi.getAllProducts();
-		setProductListData(data);
+		productsApi.getAllProducts().then((data) => {
+			setProductListData(data);
+			console.log(data);
+		});
 	}, []);
 
 	const [sortOption, setSortOption] = useState('');
@@ -43,7 +45,7 @@ const Products = () => {
 	};
 
 	const applyPriceFilter = () => {
-		const filteredProducts = productsApi.getAllProducts().filter((product) => {
+		const filteredProducts = productListData.filter((product) => {
 			const price = parseFloat(product.price); // Assuming product.price is a string that represents a number
 			return (
 				(!minPrice || price >= parseFloat(minPrice)) &&
@@ -136,14 +138,14 @@ const Products = () => {
 					</Modal>
 					<Button variant="secondary">Export</Button>
 				</div>
-				<div className="product-headers">
+				{/* <div className="product-headers">
 					<span>PRODUCT</span>
 					<span>PRICE</span>
 					<span>SALE</span>
 					<span>REVENUE</span>
 					<span>STATUS</span>
 					<span>ACTIONS</span>
-				</div>
+				</div> */}
 			</div>
 			<div className="product-list">
 				{productListData.map((product) => (
