@@ -12,7 +12,6 @@ const Products = () => {
 	useEffect(() => {
 		productsApi.getAllProducts().then((data) => {
 			setProductListData(data);
-			console.log(data);
 		});
 	}, []);
 
@@ -60,8 +59,8 @@ const Products = () => {
 	};
 	return (
 		<div className="product-page-container">
-			<Topbar products={productListData} setProductListData={setProductListData}/>
-			
+			<Topbar setProductListData={setProductListData} />
+
 			<div className="product-list-header">
 				<div className="filters">
 					<button className="filter-button">All Products ▼</button>
