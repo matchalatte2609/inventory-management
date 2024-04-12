@@ -60,7 +60,8 @@ const Products = () => {
 	};
 	return (
 		<div className="product-page-container">
-			<Topbar />
+			<Topbar products={productListData} setProductListData={setProductListData}/>
+			
 			<div className="product-list-header">
 				<div className="filters">
 					<button className="filter-button">All Products ▼</button>
