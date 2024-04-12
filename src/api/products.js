@@ -16,7 +16,20 @@ const productsApi = {
 				console.error('There was an error fetching the products:', error);
 			});
 	},
-	getProductById: (id) => {},
+	getProductById: (id) => {
+		return axios
+			.get(`${backendUrl}/products/${id}`)
+			.then((response) => {
+				return response.data;
+			})
+			.catch((error) => {
+				// Handle errors here, for example, by logging or displaying a message
+				console.error(
+					`Error fetching product details for product id ${id}`,
+					error
+				);
+			});
+	},
 };
 
 export default productsApi;
