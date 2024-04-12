@@ -11,7 +11,7 @@ import communityIcon from '../Assets/community-icon.png';
 import settingsIcon from '../Assets/settings-icon.png';
 import inventoryIcon from '../Assets/inventory-icon.png';
 
-const Sidebar = () => {
+const Sidebar = ({ username }) => {
 	return (
 		<div className="sidebar">
 			<div className="logo-container">
@@ -20,7 +20,7 @@ const Sidebar = () => {
 			<div className="user-container">
 				<div className="user-avatar">{/* Placeholder for user avatar */}</div>
 				<div className="user-name">
-					Nhi Nguyen {/* Replace with dynamic user name if needed */}
+					{username} {/* Replace with dynamic user name if needed */}
 				</div>
 			</div>
 			<div className="nav-buttons">
