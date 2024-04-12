@@ -16,6 +16,7 @@ const materialsApi = {
 				console.error('There was an error fetching the products:', error);
 			});
 	},
+	getProductMaterialsById: (id) => {},
 };
 
 export default materialsApi;

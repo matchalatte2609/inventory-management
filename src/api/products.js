@@ -16,6 +16,7 @@ const productsApi = {
 				console.error('There was an error fetching the products:', error);
 			});
 	},
+	getProductById: (id) => {},
 };
 
 export default productsApi;

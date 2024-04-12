@@ -4,6 +4,7 @@ import ProductItem from '../../components/ProductItem/ProductItem.js';
 import productsApi from '../../api/products';
 import Topbar from '../../components/ProductsTopbar/ProductsTopbar.js';
 import './Products.css';
+import ProductDetails from '../../components/ProductDetails/ProductDetails.js';
 
 const Products = () => {
 	const [productListData, setProductListData] = useState([]);
@@ -16,7 +17,10 @@ const Products = () => {
 	}, []);
 
 	const [sortOption, setSortOption] = useState('');
-
+	const [showProductDetailModal, setShowProductDetailModal] = useState({
+		id: '',
+		show: false,
+	});
 	const [showFilterModal, setShowFilterModal] = useState(false);
 	const [minPrice, setMinPrice] = useState('');
 	const [maxPrice, setMaxPrice] = useState('');
@@ -138,6 +142,9 @@ const Products = () => {
 					</Modal>
 					<Button variant="secondary">Export</Button>
 				</div>
+				<ProductDetails
+					{...{ showProductDetailModal, setShowProductDetailModal }}
+				/>
 				{/* <div className="product-headers">
 					<span>PRODUCT</span>
 					<span>PRICE</span>
@@ -149,7 +156,13 @@ const Products = () => {
 			</div>
 			<div className="product-list">
 				{productListData.map((product) => (
-					<ProductItem key={product.id} {...product} />
+					<div
+						onClick={() => {
+							setShowProductDetailModal({ id: product.id, show: true });
+						}}
+					>
+						<ProductItem key={product.id} {...product} />
+					</div>
 				))}
 			</div>
 		</div>
