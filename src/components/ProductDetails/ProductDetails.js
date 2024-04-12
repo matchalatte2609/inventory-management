@@ -45,9 +45,24 @@ const ProductDetails = ({
 				}}
 			>
 				<Modal.Header closeButton>
-					<Modal.Title>{showProductDetailModal.id}</Modal.Title>
+					<Modal.Title>{productInfo.name} - {productInfo.design_code}</Modal.Title>
 				</Modal.Header>
-				<Modal.Body>abc</Modal.Body>
+				<Modal.Body>
+					<h5>Details</h5>
+					<p>Category: {productInfo.category}</p>
+					<p>Diameter: {productInfo.diameter || 'N/A'}</p>
+					<p>Ring Size: {productInfo.ring_size || 'N/A'}</p>
+
+					<h5>Materials</h5>
+					<p>Main Gemstone Shape: {productMaterials.main_gemstone_shape}</p>
+					<p>Main Gemstone Size: {productMaterials.main_gemstone_size}</p>
+					<p>Gold 18K Weight: {productMaterials.gold_18k_weight}</p>
+					<p>Gold 14K Weight: {productMaterials.gold_14k_weight}</p>
+					<p>Plat 900 Weight: {productMaterials.plat_900_weight || 'N/A'}</p>
+					<p>Pattern: {productMaterials.plain_or_pattern}</p>
+					<p>Diamond Weight: {productMaterials.diamond_weight || 'N/A'}</p>
+					<p>CZ Weight: {productMaterials.cz_weight || 'N/A'}</p>
+				</Modal.Body>
 				<Modal.Footer>
 					<Button
 						variant="secondary"
