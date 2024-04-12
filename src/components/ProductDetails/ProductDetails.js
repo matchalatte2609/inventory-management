@@ -1,41 +1,60 @@
-// const ProductDetails = ({ product }) => {
-//     return (
-//       <div className="product-details">
-//         <h2>{product.name}</h2>
-//         <p>Category: {product.category}</p>
-//         <p>ID: {product.productID}</p>
-//         <p>Stock Level: {product.stockLevel}</p>
-//         <p>Status: {product.status}</p>
-//         {/* ... include any other details you want to show */}
-//       </div>
-//     );
-//   };
-
+import { useState, useEffect } from 'react';
 import { Button, Modal } from 'react-bootstrap';
+import productsApi from '../../api/products.js';
+import materialsApi from '../../api/materials.js';
 
 const ProductDetails = ({
 	showProductDetailModal,
 	setShowProductDetailModal,
 }) => {
-	const productInfo = {
-		id: '1',
-		design_code: 'BTA0007',
-		name: 'SICULA',
-		category: 'BTA',
-		diameter: '',
-		ring_size: '',
-	};
-	const productMaterials = {
-		ProductId: '1',
-		main_gemstone_shape: 'Heart',
-		main_gemstone_size: '5.0*6.0',
-		gold_18k_weight: '2.68',
-		gold_14k_weight: '2.46',
-		plat_900_weight: '',
-		plain_or_pattern: 'Pattern',
-		diamond_weight: '',
-		cz_weight: '',
-	};
+	const [productInfo, setProductInfo] = useState({});
+	const [productMaterials, setProductMaterials] = useState({});
+	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState('');
+	useEffect(() => {
+		let isMounted = true;
+		setLoading(true);
+
+		const fetchData = async () => {
+			try {
+				if (showProductDetailModal.show && showProductDetailModal.id) {
+					const productData = await productsApi.getProductById(
+						showProductDetailModal.id
+					);
+					const materialData = await materialsApi.getProductMaterialsById(
+						showProductDetailModal.id
+					);
+
+					if (isMounted) {
+						setProductInfo(productData);
+						setProductMaterials(materialData);
+					}
+				}
+			} catch (err) {
+				if (isMounted) {
+					setError('Failed to fetch data. Please try again.');
+					console.error(err);
+				}
+			} finally {
+				if (isMounted) {
+					setLoading(false);
+				}
+			}
+		};
+
+		fetchData();
+
+		return () => {
+			isMounted = false;
+		};
+	}, [showProductDetailModal]);
+	if (error) {
+		return <div>Error: {error}</div>;
+	}
+
+	if (loading) {
+		return <div>Loading...</div>;
+	}
 	return (
 		<div>
 			<Modal
@@ -45,7 +64,9 @@ const ProductDetails = ({
 				}}
 			>
 				<Modal.Header closeButton>
-					<Modal.Title>{productInfo.name} - {productInfo.design_code}</Modal.Title>
+					<Modal.Title>
+						{productInfo.name} - {productInfo.design_code}
+					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<h5>Details</h5>
