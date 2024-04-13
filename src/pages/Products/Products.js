@@ -63,9 +63,9 @@ const Products = () => {
 
 			<div className="product-list-header">
 				<div className="filters">
-					<button className="filter-button">All Products ▼</button>
+					{/* <button className="filter-button">All Products ▼</button> */}
 					{/* Sort Button */}
-					<Dropdown className="" onSelect={handleSelectSortOptions}>
+					{/* <Dropdown className="" onSelect={handleSelectSortOptions}>
 						<Dropdown.Toggle variant="secondary">
 							{sortOption === '' ? 'Sort Products' : sortOption}
 						</Dropdown.Toggle>
@@ -76,19 +76,19 @@ const Products = () => {
 							<Dropdown.Item eventKey="price-desc">
 								Price (High to Low)
 							</Dropdown.Item>
-							<Dropdown.Item eventKey="name-asc">Name (A to Z)</Dropdown.Item>
+							<Dropdown.Item eventKey="name-asc">Name (A to Z)</Dropdown.Item> */}
 							{/* Add more Dropdown.Item as needed */}
-						</Dropdown.Menu>
-					</Dropdown>
+						{/* </Dropdown.Menu>
+					</Dropdown> */}
 					{/* Filter Button */}
-					<Button
+					{/* <Button
 						variant="secondary"
 						onClick={() => {
 							setShowFilterModal(true);
 						}}
 					>
 						Filter
-					</Button>
+					</Button> */}
 					{/* Filter Modal */}
 					<Modal
 						show={showFilterModal}
@@ -140,7 +140,7 @@ const Products = () => {
 							</Button>
 						</Modal.Footer>
 					</Modal>
-					<Button variant="secondary">Export</Button>
+					{/* <Button variant="secondary">Export</Button> */}
 				</div>
 				<ProductDetails
 					{...{ showProductDetailModal, setShowProductDetailModal }}

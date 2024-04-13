@@ -35,6 +35,8 @@
 
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col, Card } from 'react-bootstrap';
+import './Login.css';
+import tierraLogo from "../../components/Assets/tierra-logo.png";
 
 const LoginForm = ({ onLogin }) => {
   const [email, setEmail] = useState('');
@@ -47,11 +49,17 @@ const LoginForm = ({ onLogin }) => {
   };
 
   return (
+
     <Container className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
       <Row>
         <Col>
           <Card>
             <Card.Body>
+            <img
+            src={tierraLogo} // Replace with your actual logo path
+            alt="Company Logo"
+            style={{ width: '150px', marginBottom: '2rem' }} // Adjust width as needed
+          />
               <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>

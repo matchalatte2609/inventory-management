@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import productsApi from '../../api/products';
+import searchIcon from "../Assets/magnifying-glass.png";
+import './ProductsTopbar.css'
+
 let products;
 productsApi.getAllProducts().then((data) => {
 	products = data;
@@ -19,6 +22,9 @@ const SearchBar = ({ setProductListData }) => {
 
 	return (
 		<div>
+			<img src = {searchIcon} 
+			 	 alt='search-icon'
+				 className='search-icon' />
 			<input
 				type="text"
 				placeholder="Search by Design Code..."

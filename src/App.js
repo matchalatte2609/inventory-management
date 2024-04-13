@@ -18,6 +18,7 @@ const App = () => {
 			setLoggedIn(true);
 			setCurrentUser(email.split('@')[0]);
 		} else {
+			alert('Username or Password is wrong');
 			setLoggedIn(false);
 		}
 	};
@@ -30,7 +31,7 @@ const App = () => {
 					<Sidebar username={currentUser} />
 					<div className="main-content">
 						<Routes>
-							<Route path="/analytics" element={<Login />} />
+							{/* <Route path="/analytics" element={<Login />} /> */}
 							<Route path="/home" element={<Home />} />
 							<Route path="/products" element={<Products />} />
 							<Route path="/inventory" element={<Inventory />} />
