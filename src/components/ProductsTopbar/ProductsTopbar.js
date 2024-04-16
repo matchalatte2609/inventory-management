@@ -1,16 +1,48 @@
-import './ProductsTopbar.css';
-const Topbar = ({ onSearch, onAddProduct }) => (
-	<div className="header">
-		<input
-			type="text"
-			placeholder="Search Products..."
-			className="search-bar"
-			onChange={onSearch}
-		/>
-		<button className="topbar-button" onClick={onAddProduct}>
-			New Product
-		</button>
-	</div>
-);
+import React, { useState } from 'react';
+import productsApi from '../../api/products';
+import searchIcon from "../Assets/magnifying-glass.png";
+import './ProductsTopbar.css'
 
-export default Topbar;
+let products;
+productsApi.getAllProducts().then((data) => {
+	products = data;
+});
+const SearchBar = ({ setProductListData }) => {
+	const [searchTerm, setSearchTerm] = useState('');
+
+	const handleSearch = (event) => {
+		const { value } = event.target;
+		setSearchTerm(value);
+		const foundProducts = products.filter((product) =>
+			product.design_code.toLowerCase().includes(value.toLowerCase())
+		);
+
+		setProductListData(foundProducts);
+	};
+
+	return (
+		<div>
+			<img src = {searchIcon} 
+			 	 alt='search-icon'
+				 className='search-icon' />
+			<input
+				type="text"
+				placeholder="Search by Design Code..."
+				value={searchTerm}
+				onChange={handleSearch}
+				style={{ margin: '10px', padding: '8px' }}
+			/>
+			{/* {result && (
+				<div>
+					<h4>Product Details:</h4>
+					<p>Name: {result.name}</p>
+					<p>Design Code: {result.design_code}</p>
+					<p>Category: {result.category}</p>
+				</div>
+			)}
+			{!result && searchTerm && <p>No product found with that design code.</p>} */}
+		</div>
+	);
+};
+
+export default SearchBar;

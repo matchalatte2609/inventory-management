@@ -1,57 +1,74 @@
-/* ProductItem.css */
 .product-item {
 	display: flex;
 	align-items: center;
-	margin-bottom: 1rem;
-	padding: 0.5rem;
-	background-color: #fff;
-	border-radius: 4px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.product-image {
-	width: 64px; /* Set your desired size */
-	height: 64px;
-	margin-right: 1rem;
-	object-fit: cover;
-	border-radius: 4px;
-}
-
-.product-info {
-	flex-grow: 1;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-.product-actions {
+	background-color: #fff; /* Assuming white background */
+	box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Adding subtle shadow */
+	margin-bottom: 10px; /* Add space between items */
+	padding: 10px; /* Add padding inside items */
+	border-radius: 6px; /* Rounded corners like in the reference */
+  }
+  
+  .product-image-container {
+	flex: 0 0 auto; /* Do not grow or shrink */
+	width: 80px; /* Adjust the width as necessary */
+	height: 80px; /* Adjust the height as necessary */
+	padding: 5px;
 	display: flex;
 	align-items: center;
-	/* If you want some space between buttons */
-	& > .button {
-		margin-left: 0.5rem;
-	}
-}
+	justify-content: center;
+  }
+  
+  .product-image {
+	max-width: 100%;
+	max-height: 100%;
+	display: block; /* Remove any extra space below the image */
+  }
+  
+  /* Add styles for name, category, and other text fields */
+  .product-name, .product-category, .product-id, .product-stock-level, .product-status {
+	flex: 1;
+	margin: 0 10px; /* Add some horizontal spacing */
+	overflow: hidden; /* In case content is too wide */
+	white-space: nowrap;
+	text-overflow: ellipsis; /* Add an ellipsis for overflow */
+  }
+  
+  /* Style the edit and delete buttons */
+  .edit-button,
+  .delete-button {
+	background-color: #f2f2f2; /* Light grey background */
+	border: none;
+	padding: 5px 10px;
+	border-radius: 4px;
+	cursor: pointer;
+	margin-left: 5px; /* Add space between buttons */
+	color: #333; /* Darker text for better contrast */
+  }
+  
+  .edit-button:hover,
+  .delete-button:hover {
+	background-color: #e0e0e0; /* Slightly darker on hover */
+  }
+  
+  /* Additional status-specific styles may be added as needed */
 
-.product-button {
-	color: #593c2a;
-	background: #dcc4b6;
-	border-radius: 30px;
-}
-.product-name {
-	flex-grow: 2; /* Adjust the grow factor as needed */
-}
-.product-name,
-.product-price,
-.product-sold,
-.product-revenue,
-.product-status {
-	flex-grow: 1;
-	text-align: center; /* Ensures alignment under headers */
-}
-
-.product-actions {
-	flex-grow: 1;
-	display: flex;
-	justify-content: flex-end;
-}
+  .product-stock-level {
+	position: relative; /* Contain the absolute bar */
+	flex: 1;
+	text-align: center; /* Center the text */
+	margin: 0 10px;
+  }
+  
+  .stock-level-bar-container {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 4px; /* Height of the stock level bar */
+	background-color: #f0f0f0; /* Light background for the bar */
+  }
+  
+  .stock-level-bar {
+	height: 100%;
+	background-color: #76b852; /* Use your app's color palette here */
+  }

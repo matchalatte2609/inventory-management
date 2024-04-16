@@ -4,17 +4,22 @@ import ProductItem from '../../components/ProductItem/ProductItem.js';
 import productsApi from '../../api/products';
 import Topbar from '../../components/ProductsTopbar/ProductsTopbar.js';
 import './Products.css';
+import ProductDetails from '../../components/ProductDetails/ProductDetails.js';
 
 const Products = () => {
 	const [productListData, setProductListData] = useState([]);
 
 	useEffect(() => {
-		const data = productsApi.getAllProducts();
-		setProductListData(data);
+		productsApi.getAllProducts().then((data) => {
+			setProductListData(data);
+		});
 	}, []);
 
 	const [sortOption, setSortOption] = useState('');
-
+	const [showProductDetailModal, setShowProductDetailModal] = useState({
+		id: '',
+		show: false,
+	});
 	const [showFilterModal, setShowFilterModal] = useState(false);
 	const [minPrice, setMinPrice] = useState('');
 	const [maxPrice, setMaxPrice] = useState('');
@@ -43,7 +48,7 @@ const Products = () => {
 	};
 
 	const applyPriceFilter = () => {
-		const filteredProducts = productsApi.getAllProducts().filter((product) => {
+		const filteredProducts = productListData.filter((product) => {
 			const price = parseFloat(product.price); // Assuming product.price is a string that represents a number
 			return (
 				(!minPrice || price >= parseFloat(minPrice)) &&
@@ -54,12 +59,13 @@ const Products = () => {
 	};
 	return (
 		<div className="product-page-container">
-			<Topbar />
+			<Topbar setProductListData={setProductListData} />
+
 			<div className="product-list-header">
 				<div className="filters">
-					<button className="filter-button">All Products ▼</button>
+					{/* <button className="filter-button">All Products ▼</button> */}
 					{/* Sort Button */}
-					<Dropdown className="" onSelect={handleSelectSortOptions}>
+					{/* <Dropdown className="" onSelect={handleSelectSortOptions}>
 						<Dropdown.Toggle variant="secondary">
 							{sortOption === '' ? 'Sort Products' : sortOption}
 						</Dropdown.Toggle>
@@ -70,19 +76,19 @@ const Products = () => {
 							<Dropdown.Item eventKey="price-desc">
 								Price (High to Low)
 							</Dropdown.Item>
-							<Dropdown.Item eventKey="name-asc">Name (A to Z)</Dropdown.Item>
+							<Dropdown.Item eventKey="name-asc">Name (A to Z)</Dropdown.Item> */}
 							{/* Add more Dropdown.Item as needed */}
-						</Dropdown.Menu>
-					</Dropdown>
+						{/* </Dropdown.Menu>
+					</Dropdown> */}
 					{/* Filter Button */}
-					<Button
+					{/* <Button
 						variant="secondary"
 						onClick={() => {
 							setShowFilterModal(true);
 						}}
 					>
 						Filter
-					</Button>
+					</Button> */}
 					{/* Filter Modal */}
 					<Modal
 						show={showFilterModal}
@@ -134,20 +140,29 @@ const Products = () => {
 							</Button>
 						</Modal.Footer>
 					</Modal>
-					<Button variant="secondary">Export</Button>
+					{/* <Button variant="secondary">Export</Button> */}
 				</div>
-				<div className="product-headers">
+				<ProductDetails
+					{...{ showProductDetailModal, setShowProductDetailModal }}
+				/>
+				{/* <div className="product-headers">
 					<span>PRODUCT</span>
 					<span>PRICE</span>
 					<span>SALE</span>
 					<span>REVENUE</span>
 					<span>STATUS</span>
 					<span>ACTIONS</span>
-				</div>
+				</div> */}
 			</div>
 			<div className="product-list">
 				{productListData.map((product) => (
-					<ProductItem key={product.id} {...product} />
+					<div
+						onClick={() => {
+							setShowProductDetailModal({ id: product.id, show: true });
+						}}
+					>
+						<ProductItem key={product.id} {...product} />
+					</div>
 				))}
 			</div>
 		</div>
