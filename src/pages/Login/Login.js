@@ -26,30 +26,8 @@ const LoginForm = ({ onLogin }) => {
             style={{ width: '150px', marginBottom: '2rem' }} // Adjust width as needed
           />
               <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Label>Email address</Form.Label>
-                  <Form.Control
-                    type="email"
-                    placeholder="Enter email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                </Form.Group>
-
-                <Form.Group controlId="formBasicPassword">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                </Form.Group>
-
                 <Button variant="primary" type="submit">
-                  Login
+                  Login with Outlook
                 </Button>
               </Form>
             </Card.Body>
