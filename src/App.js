@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // Import other pages/components you want to route to
 
 const App = () => {
-	const [loggedIn, setLoggedIn] = useState(false);
+	const [loggedIn, setLoggedIn] = useState(true);
 	const [currentUser, setCurrentUser] = useState('');
 	const onLogin = (email, password) => {
 		if (email.endsWith('@tierra.vn') && password === '01062016') {

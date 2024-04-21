@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import productsApi from '../../api/products.js';
 import materialsApi from '../../api/materials.js';
+import shapesApi from '../../api/product_shapes.js';
+import pricingApi from '../../api/product_pricing.js';
 
 const ProductDetails = ({
 	showProductDetailModal,
@@ -9,6 +11,8 @@ const ProductDetails = ({
 }) => {
 	const [productInfo, setProductInfo] = useState({});
 	const [productMaterials, setProductMaterials] = useState({});
+	const [productPricing, setProductPricing] = useState({});
+	const [productShapes, setProductShapes] = useState({});
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState('');
 	useEffect(() => {
@@ -24,10 +28,18 @@ const ProductDetails = ({
 					const materialData = await materialsApi.getProductMaterialsById(
 						showProductDetailModal.id
 					);
-
+					const shapesData = await shapesApi.getProductShapesById(
+						showProductDetailModal.id
+					);
+					const pricingData = await pricingApi.getProductPricesById(
+						showProductDetailModal.id
+					);
 					if (isMounted) {
 						setProductInfo(productData);
 						setProductMaterials(materialData);
+						setProductPricing(pricingData);
+						setProductShapes(shapesData);
+						console.log(productPricing);
 					}
 				}
 			} catch (err) {
@@ -83,6 +95,8 @@ const ProductDetails = ({
 					<p>Pattern: {productMaterials.plain_or_pattern}</p>
 					<p>Diamond Weight: {productMaterials.diamond_weight || 'N/A'}</p>
 					<p>CZ Weight: {productMaterials.cz_weight || 'N/A'}</p>
+					<p>Shapes: {JSON.stringify(productShapes)}</p>
+					<p>Pricing: {JSON.stringify(productPricing)}</p>
 				</Modal.Body>
 				<Modal.Footer>
 					<Button
