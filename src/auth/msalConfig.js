@@ -9,7 +9,7 @@ export const msalConfig = {
 		authority:
 			process.env.MSAL_TENANT_URL ||
 			'https://login.microsoftonline.com/d5ecd414-895b-4c83-8cff-7995443859fe',
-		redirectUri: process.env.MSAL_REDIRECT_URI || 'http://localhost:3000/',
+		redirectUri: process.env.MSAL_REDIRECT_URI || '/',
 	},
 	cache: {
 		cacheLocation: 'sessionStorage', // This configures where your cache will be stored
