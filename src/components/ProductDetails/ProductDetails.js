@@ -97,8 +97,18 @@ const ProductDetails = ({
 						Accented Stone Weight: {productMaterials.diamond_weight || 'N/A'}
 					</p>
 					<p>CZ Weight: {productMaterials.cz_weight || 'N/A'}</p>
-					<p>Shapes: {JSON.stringify(productShapes)}</p>
-					<p>Pricing: {JSON.stringify(productPricing)}</p>
+					<h5>SHAPES:</h5>
+					{Object.keys(productShapes)
+						.filter((key) => key !== 'ProductId')
+						.map((key) => (
+							<p>{`${key}: ${productShapes[key]}`}</p>
+						))}
+					<h5>Pricing:</h5>
+					{Object.keys(productPricing)
+						.filter((key) => key !== 'ProductId')
+						.map((key) => (
+							<p>{`${key}: ${productPricing[key]}`}</p>
+						))}
 				</Modal.Body>
 				<Modal.Footer>
 					<Button
