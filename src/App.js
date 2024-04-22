@@ -17,7 +17,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const App = () => {
 	const { instance, accounts } = useMsal();
 	const [graphData, setGraphData] = useState(null);
-	const [currentUser, setCurrentUser] = useState('');
 
 	const requestProfileData = async () => {
 		instance
@@ -37,11 +36,7 @@ const App = () => {
 			console.log(e);
 		});
 	};
-	useEffect(() => {
-		if (accounts) {
-			setCurrentUser(accounts[0].name);
-		}
-	}, []);
+
 	const isAuthenticated = useIsAuthenticated();
 
 	if (!isAuthenticated) return <Login onLogin={handleLogin} />;
@@ -50,7 +45,7 @@ const App = () => {
 			// If logged in already
 			<Router>
 				<div className="app-container">
-					<Sidebar username={currentUser} />
+					<Sidebar username={accounts[0].name} />
 					<div className="main-content">
 						<Routes>
 							{/* <Route path="/analytics" element={<Login />} /> */}
