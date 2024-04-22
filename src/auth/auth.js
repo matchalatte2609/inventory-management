@@ -3,7 +3,7 @@ import { msalConfig } from './msalConfig';
 
 const msalInstance = new PublicClientApplication(msalConfig);
 
-export const handleLogin = () => {
+export const loginRequest = () => {
 	msalInstance.loginRedirect({
 		scopes: ['User.Read', 'openid', 'profile', 'email'],
 	});
