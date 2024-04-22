@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useMsal, useIsAuthenticated } from '@azure/msal-react';
 import { loginRequest } from './auth/msalConfig.js';
 import { callMsGraph } from './auth/graph.js';
+import { Button } from 'react-bootstrap';
 import './App.css';
 import Home from './pages/Home/Home.js';
 import Products from './pages/Products/Products.js';
@@ -19,13 +20,15 @@ const App = () => {
 
 	const requestProfieData = async () => {
 		instance
-		.acquireTokenSilent({
-			...loginRequest,
-			account: accounts[0],
-		})
-		.then((response) => {
-			callMsGraph(response.accessToken).then((response) => setGraphData(response));
-		});
+			.acquireTokenSilent({
+				...loginRequest,
+				account: accounts[0],
+			})
+			.then((response) => {
+				callMsGraph(response.accessToken).then((response) =>
+					setGraphData(response)
+				);
+			});
 	};
 
 	const handleLogin = () => {
@@ -52,6 +55,17 @@ const App = () => {
 							<Route path="/inventory" element={<Inventory />} />
 						</Routes>
 					</div>
+				</div>
+				<div>
+					<Button
+						onClick={() => {
+							instance.logoutRedirect({
+								postLogoutRedirectUri: '/',
+							});
+						}}
+					>
+						Logout
+					</Button>
 				</div>
 			</Router>
 		);
