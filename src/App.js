@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useMsal, useIsAuthenticated } from '@azure/msal-react';
+import { loginRequest } from './auth/msalConfig.js';
 import './App.css';
 import Home from './pages/Home/Home.js';
 import Products from './pages/Products/Products.js';
@@ -11,18 +13,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // Import other pages/components you want to route to
 
 const App = () => {
+	const { instance } = useMsal();
+	const handleLogin = () => {
+		instance.loginRedirect(loginRequest).catch((e) => {
+			console.log(e);
+		});
+	};
+	const isAuthenticated = useIsAuthenticated();
+
 	const [loggedIn, setLoggedIn] = useState(true);
 	const [currentUser, setCurrentUser] = useState('');
-	const onLogin = (email, password) => {
-		if (email.endsWith('@tierra.vn') && password === '01062016') {
-			setLoggedIn(true);
-			setCurrentUser(email.split('@')[0]);
-		} else {
-			alert('Username or Password is wrong');
-			setLoggedIn(false);
-		}
-	};
-	if (!loggedIn) return <Login onLogin={onLogin} />;
+
+	if (!isAuthenticated) return <Login onLogin={handleLogin} />;
 	else
 		return (
 			// If logged in already
