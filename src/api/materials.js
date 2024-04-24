@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const backendUrl = process.env.BACKEND_URL || 'http://localhost:5002';
+const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5002';
 
 const materialsApi = {
 	getAllProductsMaterials: () => {
