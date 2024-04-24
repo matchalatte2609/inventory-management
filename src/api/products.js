@@ -4,6 +4,7 @@ const backendUrl = process.env.BACKEND_URL || 'http://localhost:5002';
 
 const productsApi = {
 	getAllProducts: () => {
+		console.log(`debug: backendUrl = ${backendUrl}`);
 		// Returns the promise from the axios.get call
 		return axios
 			.get(`${backendUrl}/products`)
