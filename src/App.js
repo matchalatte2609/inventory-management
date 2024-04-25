@@ -1,5 +1,9 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useMsal, useIsAuthenticated } from '@azure/msal-react';
+import { loginRequest } from './auth/msalConfig.js';
+import { callMsGraph } from './auth/graph.js';
+import { Button } from 'react-bootstrap';
 import './App.css';
 import Home from './pages/Home/Home.js';
 import Products from './pages/Products/Products.js';
@@ -11,24 +15,37 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // Import other pages/components you want to route to
 
 const App = () => {
-	const [loggedIn, setLoggedIn] = useState(true);
-	const [currentUser, setCurrentUser] = useState('');
-	const onLogin = (email, password) => {
-		if (email.endsWith('@tierra.vn') && password === '01062016') {
-			setLoggedIn(true);
-			setCurrentUser(email.split('@')[0]);
-		} else {
-			alert('Username or Password is wrong');
-			setLoggedIn(false);
-		}
+	const { instance, accounts } = useMsal();
+	const [graphData, setGraphData] = useState(null);
+
+	const requestProfileData = async () => {
+		instance
+			.acquireTokenSilent({
+				...loginRequest,
+				account: accounts[0],
+			})
+			.then((response) => {
+				callMsGraph(response.accessToken).then((response) =>
+					setGraphData(response)
+				);
+			});
 	};
-	if (!loggedIn) return <Login onLogin={onLogin} />;
+
+	const handleLogin = () => {
+		instance.loginRedirect(loginRequest).catch((e) => {
+			console.log(e);
+		});
+	};
+
+	const isAuthenticated = useIsAuthenticated();
+
+	if (!isAuthenticated) return <Login onLogin={handleLogin} />;
 	else
 		return (
 			// If logged in already
 			<Router>
 				<div className="app-container">
-					<Sidebar username={currentUser} />
+					<Sidebar username={accounts[0].name} />
 					<div className="main-content">
 						<Routes>
 							{/* <Route path="/analytics" element={<Login />} /> */}
@@ -37,6 +54,17 @@ const App = () => {
 							<Route path="/inventory" element={<Inventory />} />
 						</Routes>
 					</div>
+				</div>
+				<div>
+					<Button
+						onClick={() => {
+							instance.logoutRedirect({
+								postLogoutRedirectUri: '/',
+							});
+						}}
+					>
+						Logout
+					</Button>
 				</div>
 			</Router>
 		);

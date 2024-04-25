@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-const backendUrl = process.env.BACKEND_URL || 'http://localhost:5002';
+const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5002';
 
 const productsApi = {
 	getAllProducts: () => {
+		console.log(`debug: ${process.env.BACKEND_URL}`);
 		// Returns the promise from the axios.get call
 		return axios
 			.get(`${backendUrl}/products`)
