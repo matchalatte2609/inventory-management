@@ -4,6 +4,7 @@ import productsApi from '../../api/products.js';
 import materialsApi from '../../api/materials.js';
 import shapesApi from '../../api/product_shapes.js';
 import pricingApi from '../../api/product_pricing.js';
+import './ProductDetails.css';
 
 const ProductDetails = ({
 	showProductDetailModal,
@@ -77,38 +78,63 @@ const ProductDetails = ({
 			>
 				<Modal.Header closeButton>
 					<Modal.Title>
-						{productInfo.name} - {productInfo.design_code}
+						{productInfo.design_code}
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<h5>Details</h5>
+					<h5>DETAILS: </h5>
 					<p>Category: {productInfo.category}</p>
 					<p>Diameter: {productInfo.diameter || 'N/A'}</p>
 					<p>Ring Size: {productInfo.ring_size || 'N/A'}</p>
 
-					<h5>Materials</h5>
+					<h5>MATERIALS: </h5>
 					<p>Main Gemstone Shape: {productMaterials.main_gemstone_shape}</p>
 					<p>Main Gemstone Size: {productMaterials.main_gemstone_size}</p>
-					<p>Gold 18K Weight: {productMaterials.gold_18k_weight}</p>
-					<p>Gold 14K Weight: {productMaterials.gold_14k_weight}</p>
-					<p>Plat 900 Weight: {productMaterials.plat_900_weight || 'N/A'}</p>
-					<p>Pattern: {productMaterials.plain_or_pattern}</p>
+					<p>Gold 18K Weight: {productMaterials.gold_18k_weight} g</p>
+					<p>Gold 14K Weight: {productMaterials.gold_14k_weight} g</p>
+					<p>Plat 900 Weight: {productMaterials.plat_900_weight || 'N/A'} g</p>
+					<p>Smooth Surface / Specially Patterned Surface: {productMaterials.plain_or_pattern}</p>
 					<p>
 						Accented Stone Weight: {productMaterials.diamond_weight || 'N/A'}
 					</p>
 					<p>CZ Weight: {productMaterials.cz_weight || 'N/A'}</p>
-					<h5>SHAPES:</h5>
+
+
+					<h5>ACCENTED STONES:</h5>
 					{Object.keys(productShapes)
-						.filter((key) => key !== 'ProductId')
-						.map((key) => (
-							<p>{`${key}: ${productShapes[key]}`}</p>
-						))}
-					<h5>Pricing:</h5>
+					.filter(key => key !== 'ProductId')
+					.map(key => (
+						<div>
+						<p className={key.includes('Shape') ? 'red-text' : ''}>
+							{`${key}: ${productShapes[key]}`}
+						</p>
+						</div>
+					))
+					}
+
+
+					<h5>PRICING: </h5>
 					{Object.keys(productPricing)
 						.filter((key) => key !== 'ProductId')
-						.map((key) => (
-							<p>{`${key}: ${productPricing[key]}`}</p>
-						))}
+						.map(key => {
+							// Ensure the value is a number.
+							const priceValue = Number(productPricing[key]);
+						
+							// Check if the value is a number and not NaN.
+							if (!isNaN(priceValue)) {
+							  return (
+								<p>{key}: {priceValue.toLocaleString('en-US', {
+								  style: 'decimal',
+								  minimumFractionDigits: 0
+								})}</p>
+							  );
+							} else {
+							  // Log an error or handle it as needed
+							  console.error(`Invalid price format for key ${key}: ${productPricing[key]}`);
+							  return <p>{key}: {productPricing[key]}</p>; // Show original value or handle differently
+							}
+						  })
+						  }
 				</Modal.Body>
 				<Modal.Footer>
 					<Button
@@ -118,14 +144,6 @@ const ProductDetails = ({
 						}}
 					>
 						Close
-					</Button>
-					<Button
-						variant="primary"
-						onClick={() => {
-							setShowProductDetailModal({ id: '', show: false });
-						}}
-					>
-						Save Changes
 					</Button>
 				</Modal.Footer>
 			</Modal>
