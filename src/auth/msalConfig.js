@@ -5,7 +5,7 @@ import { LogLevel } from '@azure/msal-browser';
 export const msalConfig = {
 	auth: {
 		clientId:
-			process.env.MSAL_CLIENT_ID || '21bbb4bf-c6be-4f92-8828-54768bd663e0',
+			process.env.MSAL_CLIENT_ID || 'ac46edc2-7f70-44ce-be7f-c3a516d9634b',
 		authority:
 			process.env.MSAL_TENANT_URL ||
 			'https://login.microsoftonline.com/d5ecd414-895b-4c83-8cff-7995443859fe',
