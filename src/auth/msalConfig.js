@@ -5,11 +5,11 @@ import { LogLevel } from '@azure/msal-browser';
 export const msalConfig = {
 	auth: {
 		clientId:
-			process.env.MSAL_CLIENT_ID || 'ac46edc2-7f70-44ce-be7f-c3a516d9634b',
+			process.env.REACT_APP_MSAL_CLIENT_ID || 'ac46edc2-7f70-44ce-be7f-c3a516d9634b',
 		authority:
-			process.env.MSAL_TENANT_URL ||
+			process.env.REACT_APP_MSAL_TENANT_URL ||
 			'https://login.microsoftonline.com/d5ecd414-895b-4c83-8cff-7995443859fe',
-		redirectUri: process.env.MSAL_REDIRECT_URI || '/',
+		redirectUri: process.env.REACT_APP_MSAL_REDIRECT_URI || '/',
 	},
 	cache: {
 		cacheLocation: 'sessionStorage', // This configures where your cache will be stored
