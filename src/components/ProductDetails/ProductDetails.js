@@ -126,7 +126,7 @@ const ProductDetails = ({
 								<p>{key}: {priceValue.toLocaleString('en-US', {
 								  style: 'decimal',
 								  minimumFractionDigits: 0
-								})}</p>
+								})} VND</p>
 							  );
 							} else {
 							  // Log an error or handle it as needed
