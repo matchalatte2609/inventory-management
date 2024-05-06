@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { Button } from 'react-bootstrap';
+
 import './Sidebar.css';
 import logo from '../Assets/tierra-logo.png';
 import homeIcon from '../Assets/home-icon.png';
@@ -13,7 +15,7 @@ import inventoryIcon from '../Assets/inventory-icon.png';
 
 const Sidebar = ({ username }) => {
 	return (
-		<div className="sidebar">
+		<div className="sidebar-container">
 			<div className="logo-container">
 				<img src={logo} alt="Company Logo" />
 			</div>
@@ -46,6 +48,17 @@ const Sidebar = ({ username }) => {
 				<Link to="/settings" className="nav-btn">
 					<img src={settingsIcon} alt="Settings" className="icon" /> Settings
 				</Link>
+				<div>
+					<Button
+						onClick={() => {
+							instance.logoutRedirect({
+								postLogoutRedirectUri: '/',
+							});
+						}}
+					>
+						Logout
+					</Button>
+					</div>
 			</div>
 		</div>
 	);
