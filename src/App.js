@@ -36,6 +36,12 @@ const App = () => {
 		});
 	};
 
+	const handleLogout = () => {
+		instance.logoutRedirect({
+			postLogoutRedirectUri: '/',
+		});
+	};
+
 	const isAuthenticated = useIsAuthenticated();
 
 	if (!isAuthenticated) return <Login onLogin={handleLogin} />;
@@ -44,7 +50,9 @@ const App = () => {
 			// If logged in already
 			<Router>
 				<div className="app-container">
-					<div className='sidebar'><Sidebar username={accounts[0].name} /></div>
+					<div className="sidebar">
+						<Sidebar username={accounts[0].name} handleLogout={handleLogout} />
+					</div>
 					<div className="main-content">
 						<Routes>
 							{/* <Route path="/analytics" element={<Login />} /> */}
@@ -54,7 +62,6 @@ const App = () => {
 						</Routes>
 					</div>
 				</div>
-
 			</Router>
 		);
 };

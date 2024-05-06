@@ -13,7 +13,7 @@ import communityIcon from '../Assets/community-icon.png';
 import settingsIcon from '../Assets/settings-icon.png';
 import inventoryIcon from '../Assets/inventory-icon.png';
 
-const Sidebar = ({ username }) => {
+const Sidebar = ({ username, handleLogout }) => {
 	return (
 		<div className="sidebar-container">
 			<div className="logo-container">
@@ -51,14 +51,12 @@ const Sidebar = ({ username }) => {
 				<div>
 					<Button
 						onClick={() => {
-							instance.logoutRedirect({
-								postLogoutRedirectUri: '/',
-							});
+							handleLogout();
 						}}
 					>
 						Logout
 					</Button>
-					</div>
+				</div>
 			</div>
 		</div>
 	);
