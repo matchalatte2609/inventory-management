@@ -9,8 +9,15 @@
 	top: 0;
 	left: 0;
 	overflow-x: hidden;	
+	transition: transform 0.3s ease;
+    transform: translateX(0);
+    z-index: 1000; /* Ensure sidebar is above other content */
 
   }
+
+  .sidebar-container.closed {
+    transform: translateX(-100%); /* Completely hide sidebar */
+}
   
   .logo-container {
 	height: 60px;
@@ -80,4 +87,19 @@
 	height: auto;
   }
   
-  
+  .sidebar-container {
+    transition: all 0.3s ease;
+}
+
+.menu-icon{
+	margin-right: 10px; /* Adjust the space between icon and text as needed */
+	width: 24px; /* Or the size of your icons */
+	height: auto;
+}
+
+.sidebar-container.closed {
+	margin-left: 0;
+
+}
+
+

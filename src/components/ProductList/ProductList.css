@@ -21,5 +21,12 @@
   .product-list {
 	display: flex;
 	flex-direction: column;
+	flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
   }
-  
+  @media (max-width: 400px) {
+	.product-list{
+		width: 150px;
+	}
+  }

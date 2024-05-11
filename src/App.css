@@ -21,7 +21,12 @@
 	flex-grow: 1;
 	background-color: #fff;
 	padding: 20px;
-	margin-left: 200px;
+	flex-grow: 1;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.sidebar.open + .main-content {
+    margin-left: 250px;
 }
 
 .header {
@@ -53,6 +58,20 @@
 	font-weight: bold;
 	padding: 10px;
 	border-bottom: 2px solid #e0e0e0;
+}
+
+.sidebar {
+    width: 250px;
+    position: fixed;
+    height: 100vh;
+}
+
+@media (max-width: 600px) {
+    .sidebar {
+        width: 10%;
+        height: auto;
+        position: relative; /* Make the sidebar a top bar on small screens */
+    }
 }
 
 /* Add additional styling as needed */
