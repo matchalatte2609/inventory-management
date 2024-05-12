@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useMsal, useIsAuthenticated } from '@azure/msal-react';
 import { loginRequest } from './auth/msalConfig.js';
 import { callMsGraph } from './auth/graph.js';
@@ -16,6 +16,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const App = () => {
 	const { instance, accounts } = useMsal();
 	const [graphData, setGraphData] = useState(null);
+
+	const sideNavRef = useRef(null);
+
+	useEffect(() => {
+		// Add event listener to the document object
+		document.addEventListener('mousedown', handleClickOutside);
+
+		// Remove event listener when the component unmounts
+		return () => {
+		document.removeEventListener('mousedown', handleClickOutside);
+		};
+	}, []);
+
+	function handleClickOutside(event) {
+		if (sideNavRef.current && !sideNavRef.current.contains(event.target)) {
+		// Clicked outside the side navigation bar, close it
+		// Implement your close side navigation bar logic here
+		}
+	}
 
 	const requestProfileData = async () => {
 		instance
@@ -50,7 +69,7 @@ const App = () => {
 			// If logged in already
 			<Router>
 				<div className="app-container">
-					<div className="sidebar">
+					<div className="sidebar" ref={sideNavRef}>
 						<Sidebar username={accounts[0].name} handleLogout={handleLogout} />
 					</div>
 					<div className="main-content">

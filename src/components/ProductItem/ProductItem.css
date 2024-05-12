@@ -73,3 +73,18 @@
 	height: 100%;
 	background-color: #76b852; /* Use your app's color palette here */
   }
+
+  @media (max-width: 600px) {
+    .product-item {
+        flex-direction: column;
+        padding: 5px;
+    }
+
+    .product-image-container {
+        width: 80%;
+    }
+
+    .product-id, .product-category, .product-name {
+        font-size: 14px;
+    }
+}

@@ -21,7 +21,12 @@
 	flex-grow: 1;
 	background-color: #fff;
 	padding: 20px;
-	margin-left: 200px;
+	flex-grow: 1;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.sidebar.open + .main-content {
+    margin-left: 250px;
 }
 
 .header {
@@ -33,6 +38,7 @@
 
 .product-list {
 	margin-top: 20px;
+	padding: 50px;
 }
 
 .button {
@@ -53,6 +59,22 @@
 	font-weight: bold;
 	padding: 10px;
 	border-bottom: 2px solid #e0e0e0;
+}
+
+.sidebar {
+    width: 250px;
+    position: fixed;
+    height: 100vh;
+}
+
+@media (max-width: 600px){
+	.product-list{
+		width: 320px;
+		padding-right: 10px;
+		padding: 0px;
+	}
+		
+
 }
 
 /* Add additional styling as needed */

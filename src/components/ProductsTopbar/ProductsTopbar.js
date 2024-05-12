@@ -21,11 +21,12 @@ const SearchBar = ({ setProductListData }) => {
 	};
 
 	return (
-		<div>
+		<div className='search-bar'>
 			<img src = {searchIcon} 
 			 	 alt='search-icon'
 				 className='search-icon' />
 			<input
+				className='search-bar'
 				type="text"
 				placeholder="Search by Design Code..."
 				value={searchTerm}
