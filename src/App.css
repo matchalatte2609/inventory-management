@@ -38,6 +38,7 @@
 
 .product-list {
 	margin-top: 20px;
+	padding: 50px;
 }
 
 .button {
@@ -66,12 +67,14 @@
     height: 100vh;
 }
 
-@media (max-width: 600px) {
-    .sidebar {
-        width: 10%;
-        height: auto;
-        position: relative; /* Make the sidebar a top bar on small screens */
-    }
+@media (max-width: 600px){
+	.product-list{
+		width: 320px;
+		padding-right: 10px;
+		padding: 0px;
+	}
+		
+
 }
 
 /* Add additional styling as needed */
