@@ -158,7 +158,7 @@ const Products = () => {
 				{productListData.map((product) => (
 					<div
 						onClick={() => {
-							setShowProductDetailModal({ id: product.id, show: true });
+							setShowProductDetailModal({ id: product.ProductId, show: true });
 						}}
 					>
 						<ProductItem key={product.id} {...product} />
