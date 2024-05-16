@@ -3,7 +3,7 @@
 .app-container {
 	display: flex;
 	height: 100vh;
-	flex-direction: row;
+	flex-direction: column;
 }
 
 .sidebar {
@@ -14,7 +14,7 @@
 	z-index: 1;
 	top: 0;
 	left: 0;
-	overflow-x: hidden;	
+	overflow-x: hidden;
 }
 
 .main-content {
@@ -22,11 +22,11 @@
 	background-color: #fff;
 	padding: 20px;
 	flex-grow: 1;
-    transition: margin-left 0.3s ease-in-out;
+	transition: margin-left 0.3s ease-in-out;
 }
 
 .sidebar.open + .main-content {
-    margin-left: 250px;
+	margin-left: 250px;
 }
 
 .header {
@@ -62,19 +62,17 @@
 }
 
 .sidebar {
-    width: 250px;
-    position: fixed;
-    height: 100vh;
+	width: 250px;
+	position: fixed;
+	height: 100vh;
 }
 
-@media (max-width: 600px){
-	.product-list{
+@media (max-width: 600px) {
+	.product-list {
 		width: 320px;
 		padding-right: 10px;
 		padding: 0px;
 	}
-		
-
 }
 
 /* Add additional styling as needed */
