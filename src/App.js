@@ -9,6 +9,7 @@ import Products from './pages/Products/Products.js';
 import Sidebar from './components/Sidebar/Sidebar.js';
 import Inventory from './pages/Inventory/Inventory.js';
 import Login from './pages/Login/Login.js';
+import Topbar from './components/Topbar/Topbar.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Import other pages/components you want to route to
@@ -25,14 +26,14 @@ const App = () => {
 
 		// Remove event listener when the component unmounts
 		return () => {
-		document.removeEventListener('mousedown', handleClickOutside);
+			document.removeEventListener('mousedown', handleClickOutside);
 		};
 	}, []);
 
 	function handleClickOutside(event) {
 		if (sideNavRef.current && !sideNavRef.current.contains(event.target)) {
-		// Clicked outside the side navigation bar, close it
-		// Implement your close side navigation bar logic here
+			// Clicked outside the side navigation bar, close it
+			// Implement your close side navigation bar logic here
 		}
 	}
 
@@ -69,8 +70,11 @@ const App = () => {
 			// If logged in already
 			<Router>
 				<div className="app-container">
-					<div className="sidebar" ref={sideNavRef}>
+					{/* <div className="sidebar" ref={sideNavRef}>
 						<Sidebar username={accounts[0].name} handleLogout={handleLogout} />
+					</div> */}
+					<div>
+						<Topbar username={accounts[0].name} handleLogout={handleLogout} />
 					</div>
 					<div className="main-content">
 						<Routes>

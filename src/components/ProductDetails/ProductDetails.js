@@ -82,6 +82,29 @@ const ProductDetails = ({
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
+					<h5>PRICING: </h5>
+						{Object.keys(productPricing)
+							.filter((key) => key !== 'ProductId')
+							.map(key => {
+								// Ensure the value is a number.
+								const priceValue = Number(productPricing[key]);
+							
+								// Check if the value is a number and not NaN.
+								if (!isNaN(priceValue)) {
+								return (
+									<p>{key}: {priceValue.toLocaleString('en-US', {
+									style: 'decimal',
+									minimumFractionDigits: 0
+									})} VND</p>
+								);
+								} else {
+								// Log an error or handle it as needed
+								console.error(`Invalid price format for key ${key}: ${productPricing[key]}`);
+								return <p>{key}: {productPricing[key]}</p>; // Show original value or handle differently
+								}
+							})
+							}
+
 					<h5>DETAILS: </h5>
 					<p>Category: {productInfo.category}</p>
 					<p>Diameter: {productInfo.diameter || 'N/A'}</p>
@@ -113,28 +136,7 @@ const ProductDetails = ({
 					}
 
 
-					<h5>PRICING: </h5>
-					{Object.keys(productPricing)
-						.filter((key) => key !== 'ProductId')
-						.map(key => {
-							// Ensure the value is a number.
-							const priceValue = Number(productPricing[key]);
-						
-							// Check if the value is a number and not NaN.
-							if (!isNaN(priceValue)) {
-							  return (
-								<p>{key}: {priceValue.toLocaleString('en-US', {
-								  style: 'decimal',
-								  minimumFractionDigits: 0
-								})} VND</p>
-							  );
-							} else {
-							  // Log an error or handle it as needed
-							  console.error(`Invalid price format for key ${key}: ${productPricing[key]}`);
-							  return <p>{key}: {productPricing[key]}</p>; // Show original value or handle differently
-							}
-						  })
-						  }
+
 				</Modal.Body>
 				<Modal.Footer>
 					<Button
