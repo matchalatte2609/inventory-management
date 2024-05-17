@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import logo from '../Assets/tierra-logo.png';
+import brandIcon from '../Assets/tierra-logo.png';
 import homeIcon from '../Assets/home-icon.png';
 import productsIcon from '../Assets/ring-icon.png';
 import analyticsIcon from '../Assets/bar-chart-icon.png';
@@ -15,6 +15,8 @@ import settingsIcon from '../Assets/settings-icon.png';
 import inventoryIcon from '../Assets/inventory-icon.png';
 import menuIcon from '../Assets/menu-icon.png'; // Ensure you have an icon for menu toggle
 
+import './Topbar.css';
+
 const Topbar = ({ username, handleLogout }) => {
 	const [isOpen, setIsOpen] = useState(false); // State to manage sidebar visibility
 
@@ -22,7 +24,7 @@ const Topbar = ({ username, handleLogout }) => {
 		<Navbar expand="lg" className="bg-body-tertiary">
 			<Container>
 				<Navbar.Brand>
-					<img src={logo} alt="" />
+					<img src={brandIcon} className='brand-icon' alt="brandIcon" />
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
