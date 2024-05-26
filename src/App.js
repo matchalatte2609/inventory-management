@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { useMsal, useIsAuthenticated } from '@azure/msal-react';
 import { loginRequest } from './auth/msalConfig.js';
@@ -82,6 +82,8 @@ const App = () => {
 							<Route path="/home" element={<Home />} />
 							<Route path="/products" element={<Products />} />
 							<Route path="/inventory" element={<Inventory />} />
+							<Route path="/" element={<Products />} />
+
 						</Routes>
 					</div>
 				</div>
