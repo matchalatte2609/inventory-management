@@ -11,6 +11,7 @@ import Inventory from './pages/Inventory/Inventory.js';
 import Login from './pages/Login/Login.js';
 import Topbar from './components/Topbar/Topbar.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ScrollToTopButton from './components/ScrollToTopBtn/ScrollToTopBtn.js';
 
 // Import other pages/components you want to route to
 
@@ -86,6 +87,7 @@ const App = () => {
 
 						</Routes>
 					</div>
+					<ScrollToTopButton/>
 				</div>
 			</Router>
 		);

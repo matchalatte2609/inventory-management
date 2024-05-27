@@ -26,7 +26,7 @@ const SearchBar = ({ setProductListData }) => {
 			 	 alt='search-icon'
 				 className='search-icon' />
 			<input
-				className='search-bar'
+				className='search-input'
 				type="text"
 				placeholder="Search by Design Code..."
 				value={searchTerm}

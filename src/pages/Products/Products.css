@@ -41,6 +41,8 @@
 	padding: 0px 0;
 }
 
-.product-list {
-	margin-top: 0; /* Adjust top margin as needed, if at all */
+@media (max-width: 600px){
+	.product-list {
+	margin-top: 60px; /* Adjust top margin as needed, if at all */
+}
 }
