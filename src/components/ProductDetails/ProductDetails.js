@@ -109,9 +109,9 @@ const ProductDetails = ({
 					<p>Category: {productInfo.category}</p>
 					<p>Diameter: {productInfo.diameter || 'N/A'}</p>
 					<p>Ring Size: {productInfo.ring_size || 'N/A'}</p>
-					<p>Base Thickness: {productInfo.base_thickness || 'N/A'}</p>
-					<p>Base Width: {productInfo.base_width || 'N/A'}</p>
-					<p>Prong's Height: {productInfo.prongs_height || 'N/A'}</p>
+					<p>Base Thickness: {productInfo.base_thickness || 'N/A'} mm</p>
+					<p>Base Width: {productInfo.base_width || 'N/A'} mm</p>
+					<p>Prong's Height: {productInfo.prongs_height || 'N/A'} mm</p>
 
 
 

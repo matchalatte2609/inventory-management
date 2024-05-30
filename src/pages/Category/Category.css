@@ -1,0 +1,30 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  .grid-item {
+    flex: 1;
+    padding: 0 10px;
+    grid-template-columns: 30% 30% 30%;
+    margin: 20px 0;
+  }
+  
+  .grid-item .form-group {
+    margin-bottom: 0;
+  }
+  
+  .form-label {
+    font-weight: bold;
+  }
+  
+  .form-control {
+    width: 100%;
+  }
+  
