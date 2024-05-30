@@ -35,6 +35,9 @@ const Topbar = ({ username, handleLogout }) => {
 						<Nav.Link as={Link} to={'/products'}>
 							Products
 						</Nav.Link>
+						<Nav.Link as={Link} to={'/category'}>
+							Categorizing
+						</Nav.Link>
 					</Nav>
 				</Navbar.Collapse>
 			</Container>
