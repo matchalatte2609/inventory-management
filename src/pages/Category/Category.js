@@ -72,6 +72,11 @@ const Category = () => {
       { value: 4, label: 'Giữ nguyên mẫu'}
     ],
     accentedStone:[
+      {value: 2, label: 'Kích thước tấm lớn hơn 1mm'},
+      {value: 2, label: 'Yêu cầu đi tấm trên thiết kế trơn'},
+      {value: 2, label: 'Loại bỏ tấm trên thiết kế hơn 2/3 tấm'},
+      {value: 3, label: 'Kích thước tấm nhỏ hơn hoặc bằng 1mm'},
+      { value: 4, label: 'Giữ nguyên mẫu'}
 
     ],
     design: [
@@ -104,7 +109,7 @@ const Category = () => {
         <Col className="grid-item">
           <Form.Group controlId="catalogue">
             <Form.Label>Catalogue</Form.Label>
-            <Form.Control as="select" defaultValue={4} value={selections.catalogue}
+            <Form.Control as="select" name="catalogue" defaultValue={4} value={selections.catalogue}
                 onChange={handleSelectionChange}>
               {dropdownOptions.catalogue.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -117,7 +122,7 @@ const Category = () => {
         <Col className="grid-item">
           <Form.Group controlId="weightShape">
             <Form.Label>Trọng lượng và Shape viên chủ</Form.Label>
-            <Form.Control as="select" defaultValue={4} value={selections.weightShape}
+            <Form.Control as="select" name="weightShape" defaultValue={4} value={selections.weightShape}
                 onChange={handleSelectionChange}>
               {dropdownOptions.weightShape.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -130,7 +135,7 @@ const Category = () => {
         <Col className="grid-item">
           <Form.Group controlId="sizeDifference">
             <Form.Label>Chênh lệch kích thước viên chủ</Form.Label>
-            <Form.Control as="select" defaultValue={4} value={selections.sizeDifference}
+            <Form.Control as="select" name="sizeDifference" defaultValue={4} value={selections.sizeDifference}
                 onChange={handleSelectionChange}>
               {dropdownOptions.sizeDifference.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -146,7 +151,7 @@ const Category = () => {
         <Col className='grid-item'>
          <Form.Group controlId='basketDesign'>
             <Form.Label>Kiểu dáng ổ chấu</Form.Label>
-            <Form.Control as="select" defaultValue={4} value={selections.basketDesign}
+            <Form.Control as="select" name="basketDesign" defaultValue={4} value={selections.basketDesign}
                 onChange={handleSelectionChange}>
             {dropdownOptions.basketDesign.map((option) => (
               <option key={option.value} value={option.value}>
@@ -159,7 +164,7 @@ const Category = () => {
         <Col className='grid-item'>
          <Form.Group controlId='basketHeight'>
             <Form.Label>Chênh lệch chiều cao ổ chấu</Form.Label>
-            <Form.Control as="select" defaultValue={4} value={selections.basketHeight}
+            <Form.Control as="select" name="basketHeight" defaultValue={4} value={selections.basketHeight}
                 onChange={handleSelectionChange}>
             {dropdownOptions.basketHeight.map((option) => (
               <option key={option.value} value={option.value}>
@@ -172,7 +177,7 @@ const Category = () => {
         <Col className="grid-item">
          <Form.Group controlId='shoulder'>
             <Form.Label>Vai nhẫn</Form.Label>
-            <Form.Control as="select" defaultValue={4} value={selections.shoulder}
+            <Form.Control as="select" name="shoulder" defaultValue={4} value={selections.shoulder}
                 onChange={handleSelectionChange}>
             {dropdownOptions.shoulder.map((option) => (
               <option key={option.value} value={option.value}>
@@ -188,7 +193,7 @@ const Category = () => {
         <Col className="grid-item">
          <Form.Group controlId='shank'>
             <Form.Label>Thân/Đáy nhẫn</Form.Label>
-            <Form.Control as="select" defaultValue={4} value={selections.shank}
+            <Form.Control as="select" name="shank" defaultValue={4} value={selections.shank}
                 onChange={handleSelectionChange}>
             {dropdownOptions.shank.map((option) => (
               <option key={option.value} value={option.value}>
@@ -201,7 +206,7 @@ const Category = () => {
         <Col className="grid-item">
          <Form.Group controlId='design'>
             <Form.Label>Đặc trưng thiết kế</Form.Label>
-            <Form.Control as="select" defaultValue={4} value={selections.design}
+            <Form.Control as="select" name="design" defaultValue={4} value={selections.design}
                 onChange={handleSelectionChange}>
             {dropdownOptions.design.map((option) => (
               <option key={option.value} value={option.value}>
@@ -214,9 +219,9 @@ const Category = () => {
         <Col className="grid-item">
          <Form.Group controlId=''>
             <Form.Label>Đá tấm</Form.Label>
-            <Form.Control as="select" defaultValue={4} value={selections.accentedStone}
+            <Form.Control as="select" name="accentedStone" defaultValue={4} value={selections.accentedStone}
                 onChange={handleSelectionChange}>
-            {dropdownOptions.catalogue.map((option) => (
+            {dropdownOptions.accentedStone.map((option) => (
               <option key={option.value} value={option.value}>
                 {option.label}
               </option>
@@ -230,20 +235,7 @@ const Category = () => {
         <Col className="grid-item">
           <Form.Group controlId='width'>
             <Form.Label>Độ dày nhẫn</Form.Label>
-            <Form.Control as="select" defaultValue={4} value={selections.width}
-                onChange={handleSelectionChange}>
-              {dropdownOptions.width.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </Form.Control>
-          </Form.Group>
-        </Col>
-        <Col className="grid-item">
-          <Form.Group controlId='thickness'>
-            <Form.Label>Độ rộng nhẫn</Form.Label>
-            <Form.Control as="select" defaultValue={4} value={selections.thickness}
+            <Form.Control as="select" name="width" defaultValue={4} value={selections.width}
                 onChange={handleSelectionChange}>
               {dropdownOptions.thickness.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -254,9 +246,22 @@ const Category = () => {
           </Form.Group>
         </Col>
         <Col className="grid-item">
+          <Form.Group controlId='thickness'>
+            <Form.Label>Độ rộng nhẫn</Form.Label>
+            <Form.Control as="select" name="thickness" defaultValue={4} value={selections.thickness}
+                onChange={handleSelectionChange}>
+              {dropdownOptions.width.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </Form.Control>
+          </Form.Group>
+        </Col>
+        <Col className="grid-item">
           <Form.Group controlId='sku'>
             <Form.Label>Yếu tố đặc biệt</Form.Label>
-            <Form.Control as="select" defaultValue={4} value={selections.sku}
+            <Form.Control as="select" name="sku" defaultValue={4} value={selections.sku}
                 onChange={handleSelectionChange}>
               {dropdownOptions.sku.map((option) => (
                 <option key={option.value} value={option.value}>
