@@ -1,9 +1,13 @@
 import React, {useState} from 'react';
-import { Form, Container, Row, Col, FormGroup, Button } from 'react-bootstrap';
+import { Form, Container, Row, Col, FormGroup, Button, Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Category.css';
 
 const Category = () => {
+
+  const [showModal, setShowModal] = useState(false);
+  const [lowestValue, setLowestValue] = useState(null);
+
 
   const [selections, setSelections] = useState({
     catalogue: '4',
@@ -31,8 +35,10 @@ const Category = () => {
   const calculateLowestValue = () => {
     const values = Object.values(selections).map(Number);
     const lowestValue = Math.min(...values);
-    alert(`Đơn hàng loại ${lowestValue}`);
+    setLowestValue(lowestValue);
+    setShowModal(true);
   };
+  
 
   const dropdownOptions = {
     catalogue: [
@@ -273,7 +279,21 @@ const Category = () => {
         </Col>
       </Row>
 
-      <Button variant="primary" onClick={calculateLowestValue}>
+    <Modal show={showModal} onHide={() => setShowModal(false)} className="custom-modal">
+      <Modal.Header closeButton>
+        <Modal.Title>Kết quả tính toán</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        Đơn hàng loại {lowestValue}
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={() => setShowModal(false)}>
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
+
+      <Button variant="primary" onClick={calculateLowestValue} id="calc-btn">
           CALCULATE
         </Button>
     </Container>
