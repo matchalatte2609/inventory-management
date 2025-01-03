@@ -123,6 +123,7 @@ const ProductDetails = ({
 					<p>Gold 14K Weight: {productMaterials.gold_14k_weight} g</p>
 					<p>Plat 900 Weight: {productMaterials.plat_900_weight || 'N/A'} g</p>
 					<p>Smooth Surface / Specially Patterned Surface: {productMaterials.surface_plain_pattern}</p>
+					<p>Catalogue Color: {productMaterials.catalogue_color}</p>
 					{/* <p>
 						Accented Stone Weight: {productMaterials.diamond_weight || 'N/A'}
 					</p>
