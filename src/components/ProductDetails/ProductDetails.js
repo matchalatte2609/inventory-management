@@ -79,6 +79,11 @@ const ProductDetails = ({
 				<Modal.Header closeButton>
 					<Modal.Title>
 						{productInfo.design_code}
+						{productShapes.new_ver === " 1 " && (
+							<span className="text-danger ms-2" style={{ fontSize: '0.8rem', fontWeight: 'normal' }}>
+								(New version)
+							</span>
+						) }
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
