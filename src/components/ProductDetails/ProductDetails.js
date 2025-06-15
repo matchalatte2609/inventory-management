@@ -37,11 +37,11 @@ const ProductDetails = ({
 						showProductDetailModal.id
 					);
 					if (isMounted) {
-						setProductInfo(productData);
-						setProductMaterials(materialData);
-						setProductPricing(pricingData);
-						setProductShapes(shapesData);
-						console.log(productPricing);
+						setProductInfo(productData || {});
+						setProductMaterials(materialData || {});
+						setProductPricing(pricingData || {});
+						setProductShapes(shapesData || {});
+						console.log(pricingData);
 					}
 				}
 			} catch (err) {
@@ -65,7 +65,8 @@ const ProductDetails = ({
 
 	// Helper function to get status badge styling
 	const getStatusBadgeClass = (status) => {
-		const normalizedStatus = status?.toString().toLowerCase().trim();
+		if (!status) return 'text-muted';
+		const normalizedStatus = status.toString().toLowerCase().trim();
 		switch (normalizedStatus) {
 			case 'active':
 				return 'text-success';
@@ -73,6 +74,15 @@ const ProductDetails = ({
 				return 'text-danger';
 			default:
 				return 'text-muted';
+		}
+	};
+
+	// Helper function to safely get nested properties
+	const safeGet = (obj, path, defaultValue = null) => {
+		try {
+			return obj && obj[path] !== undefined ? obj[path] : defaultValue;
+		} catch {
+			return defaultValue;
 		}
 	};
 
@@ -94,25 +104,25 @@ const ProductDetails = ({
 			>
 				<Modal.Header closeButton>
 					<Modal.Title>
-						{productInfo.design_code}
-						{productShapes && productShapes.new_ver === " 1 " && (
+						{safeGet(productInfo, 'design_code', '')}
+						{safeGet(productShapes, 'new_ver') === " 1 " && (
 							<span className="text-danger ms-2" style={{ fontSize: '0.8rem', fontWeight: 'normal' }}>
 								(New version)
 							</span>
 						)}
-						{productInfo.status && productInfo.status !== 'N/A' && (
+						{safeGet(productInfo, 'status') && safeGet(productInfo, 'status') !== 'N/A' && (
 							<span 
-								className={`ms-2 ${getStatusBadgeClass(productInfo.status)}`} 
+								className={`ms-2 ${getStatusBadgeClass(safeGet(productInfo, 'status'))}`} 
 								style={{ fontSize: '0.8rem', fontWeight: 'bold' }}
 							>
-								[{productInfo.status.trim()}]
+								[{safeGet(productInfo, 'status', '').toString().trim()}]
 							</span>
 						)}
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<h5>PRICING: </h5>
-						{Object.keys(productPricing)
+						{productPricing && Object.keys(productPricing)
 							.filter((key) => key !== 'ProductId')
 							.map(key => {
 								// Ensure the value is a number.
@@ -135,42 +145,41 @@ const ProductDetails = ({
 							}
 
 					<h5>DETAILS: </h5>
-					<p>Category: {productInfo.category}</p>
-					<p>Diameter: {productInfo.diameter || 'N/A'}</p>
-					<p>Ring Size: {productInfo.ring_size || 'N/A'}</p>
-					<p>Base Thickness: {productInfo.base_thickness || 'N/A'} mm</p>
-					<p>Base Width: {productInfo.base_width || 'N/A'} mm</p>
-					<p>Prong's Height: {productInfo.prongs_height || 'N/A'} mm</p>
+					<p>Category: {safeGet(productInfo, 'category', 'N/A')}</p>
+					<p>Diameter: {safeGet(productInfo, 'diameter') || 'N/A'}</p>
+					<p>Ring Size: {safeGet(productInfo, 'ring_size') || 'N/A'}</p>
+					<p>Base Thickness: {safeGet(productInfo, 'base_thickness') || 'N/A'} mm</p>
+					<p>Base Width: {safeGet(productInfo, 'base_width') || 'N/A'} mm</p>
+					<p>Prong's Height: {safeGet(productInfo, 'prongs_height') || 'N/A'} mm</p>
 					<p>Status: 
-						<span className={`ms-1 ${getStatusBadgeClass(productInfo.status)}`} style={{ fontWeight: 'bold' }}>
-							{productInfo.status || 'N/A'}
+						<span className={`ms-1 ${getStatusBadgeClass(safeGet(productInfo, 'status'))}`} style={{ fontWeight: 'bold' }}>
+							{safeGet(productInfo, 'status') || 'N/A'}
 						</span>
 					</p>
 
 					<h5>MATERIALS: </h5>
-					<p>Main Gemstone Shape: {productMaterials.main_gemstone_shape}</p>
-					<p>Main Gemstone Size: {productMaterials.main_gemstone_size}</p>
-					<p>Gold 18K Weight: {productMaterials.gold_18k_weight} g</p>
-					<p>Gold 14K Weight: {productMaterials.gold_14k_weight} g</p>
-					<p>Plat 900 Weight: {productMaterials.plat_900_weight || 'N/A'} g</p>
-					<p>Smooth Surface / Specially Patterned Surface: {productMaterials.surface_plain_pattern}</p>
-					<p>Catalogue Color: {productMaterials.catalogue_color}</p>
-					{/* <p>
-						Accented Stone Weight: {productMaterials.diamond_weight || 'N/A'}
-					</p>
-					<p>CZ Weight: {productMaterials.cz_weight || 'N/A'}</p> */}
+					<p>Main Gemstone Shape: {safeGet(productMaterials, 'main_gemstone_shape', 'N/A')}</p>
+					<p>Main Gemstone Size: {safeGet(productMaterials, 'main_gemstone_size', 'N/A')}</p>
+					<p>Gold 18K Weight: {safeGet(productMaterials, 'gold_18k_weight', 'N/A')} g</p>
+					<p>Gold 14K Weight: {safeGet(productMaterials, 'gold_14k_weight', 'N/A')} g</p>
+					<p>Plat 900 Weight: {safeGet(productMaterials, 'plat_900_weight') || 'N/A'} g</p>
+					<p>Smooth Surface / Specially Patterned Surface: {safeGet(productMaterials, 'surface_plain_pattern', 'N/A')}</p>
+					<p>Catalogue Color: {safeGet(productMaterials, 'catalogue_color', 'N/A')}</p>
 
 					<h5>ACCENTED STONES:</h5>
-					{productShapes && Object.keys(productShapes)
-					.filter(key => key !== 'ProductId')
-					.map(key => (
-						<div key={key}>
-						<p className={key.includes('Shape') ? 'red-text' : ''}>
-							{`${key}: ${productShapes[key]}`}
-						</p>
-						</div>
-					))
-					}
+					{productShapes && Object.keys(productShapes).length > 0 ? (
+						Object.keys(productShapes)
+						.filter(key => key !== 'ProductId')
+						.map(key => (
+							<div key={key}>
+							<p className={key.includes('Shape') ? 'red-text' : ''}>
+								{`${key}: ${productShapes[key] || 'N/A'}`}
+							</p>
+							</div>
+						))
+					) : (
+						<p>No accented stones data available</p>
+					)}
 
 				</Modal.Body>
 				<Modal.Footer>
