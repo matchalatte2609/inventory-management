@@ -16,6 +16,7 @@ const ProductDetails = ({
 	const [productShapes, setProductShapes] = useState({});
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState('');
+
 	useEffect(() => {
 		let isMounted = true;
 		setLoading(true);
@@ -61,6 +62,20 @@ const ProductDetails = ({
 			isMounted = false;
 		};
 	}, [showProductDetailModal]);
+
+	// Helper function to get status badge styling
+	const getStatusBadgeClass = (status) => {
+		const normalizedStatus = status?.toString().toLowerCase().trim();
+		switch (normalizedStatus) {
+			case 'active':
+				return 'text-success';
+			case 'inactive':
+				return 'text-danger';
+			default:
+				return 'text-muted';
+		}
+	};
+
 	if (error) {
 		return <div>Error: {error}</div>;
 	}
@@ -68,6 +83,7 @@ const ProductDetails = ({
 	if (loading) {
 		return <div>Loading...</div>;
 	}
+
 	return (
 		<div>
 			<Modal
@@ -83,7 +99,15 @@ const ProductDetails = ({
 							<span className="text-danger ms-2" style={{ fontSize: '0.8rem', fontWeight: 'normal' }}>
 								(New version)
 							</span>
-						) }
+						)}
+						{productInfo.status && (
+							<span 
+								className={`ms-2 ${getStatusBadgeClass(productInfo.status)}`} 
+								style={{ fontSize: '0.8rem', fontWeight: 'bold' }}
+							>
+								[{productInfo.status}]
+							</span>
+						)}
 					</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
@@ -97,7 +121,7 @@ const ProductDetails = ({
 								// Check if the value is a number and not NaN.
 								if (!isNaN(priceValue)) {
 								return (
-									<p>{key}: {priceValue.toLocaleString('en-US', {
+									<p key={key}>{key}: {priceValue.toLocaleString('en-US', {
 									style: 'decimal',
 									minimumFractionDigits: 0
 									})} VND</p>
@@ -105,7 +129,7 @@ const ProductDetails = ({
 								} else {
 								// Log an error or handle it as needed
 								console.error(`Invalid price format for key ${key}: ${productPricing[key]}`);
-								return <p>{key}: {productPricing[key]}</p>; // Show original value or handle differently
+								return <p key={key}>{key}: {productPricing[key]}</p>; // Show original value or handle differently
 								}
 							})
 							}
@@ -117,9 +141,11 @@ const ProductDetails = ({
 					<p>Base Thickness: {productInfo.base_thickness || 'N/A'} mm</p>
 					<p>Base Width: {productInfo.base_width || 'N/A'} mm</p>
 					<p>Prong's Height: {productInfo.prongs_height || 'N/A'} mm</p>
-
-
-
+					<p>Status: 
+						<span className={`ms-1 ${getStatusBadgeClass(productInfo.status)}`} style={{ fontWeight: 'bold' }}>
+							{productInfo.status || 'N/A'}
+						</span>
+					</p>
 
 					<h5>MATERIALS: </h5>
 					<p>Main Gemstone Shape: {productMaterials.main_gemstone_shape}</p>
@@ -134,20 +160,17 @@ const ProductDetails = ({
 					</p>
 					<p>CZ Weight: {productMaterials.cz_weight || 'N/A'}</p> */}
 
-
 					<h5>ACCENTED STONES:</h5>
 					{Object.keys(productShapes)
 					.filter(key => key !== 'ProductId')
 					.map(key => (
-						<div>
+						<div key={key}>
 						<p className={key.includes('Shape') ? 'red-text' : ''}>
 							{`${key}: ${productShapes[key]}`}
 						</p>
 						</div>
 					))
 					}
-
-
 
 				</Modal.Body>
 				<Modal.Footer>
