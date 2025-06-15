@@ -43,12 +43,18 @@ const ProductDetails = ({
 						setProductShapes(shapesData || {});
 						
 						// Debug logging for new_ver
-						console.log('Shapes data:', shapesData);
+						console.log('=== NEW VERSION DEBUG ===');
+						console.log('Full shapes data:', shapesData);
 						console.log('new_ver value:', shapesData?.new_ver);
 						console.log('new_ver type:', typeof shapesData?.new_ver);
 						console.log('new_ver JSON:', JSON.stringify(shapesData?.new_ver));
-						
-						console.log('Pricing data:', pricingData);
+						console.log('new_ver length (if string):', shapesData?.new_ver?.length);
+						console.log('new_ver === " 1 ":', shapesData?.new_ver === " 1 ");
+						console.log('new_ver === 1:', shapesData?.new_ver === 1);
+						console.log('new_ver === "1":', shapesData?.new_ver === "1");
+						console.log('new_ver trimmed === "1":', String(shapesData?.new_ver || '').trim() === "1");
+						console.log('isNewVersion result:', isNewVersion(shapesData?.new_ver));
+						console.log('========================');
 					}
 				}
 			} catch (err) {
@@ -146,21 +152,27 @@ const ProductDetails = ({
 						{productPricing && Object.keys(productPricing)
 							.filter((key) => key !== 'ProductId')
 							.map(key => {
+								const rawValue = productPricing[key];
+								
+								// Handle "-" or null values
+								if (rawValue === '-' || rawValue === null || rawValue === undefined || rawValue === '') {
+									return <p key={key}>{key}: -</p>;
+								}
+								
 								// Ensure the value is a number.
-								const priceValue = Number(productPricing[key]);
+								const priceValue = Number(rawValue);
 							
 								// Check if the value is a number and not NaN.
 								if (!isNaN(priceValue)) {
-								return (
-									<p key={key}>{key}: {priceValue.toLocaleString('en-US', {
-									style: 'decimal',
-									minimumFractionDigits: 0
-									})} VND</p>
-								);
+									return (
+										<p key={key}>{key}: {priceValue.toLocaleString('en-US', {
+										style: 'decimal',
+										minimumFractionDigits: 0
+										})} VND</p>
+									);
 								} else {
-								// Log an error or handle it as needed
-								console.error(`Invalid price format for key ${key}: ${productPricing[key]}`);
-								return <p key={key}>{key}: {productPricing[key]}</p>; // Show original value or handle differently
+									// Show original value for non-numeric data
+									return <p key={key}>{key}: {rawValue}</p>;
 								}
 							})
 							}
