@@ -41,7 +41,14 @@ const ProductDetails = ({
 						setProductMaterials(materialData || {});
 						setProductPricing(pricingData || {});
 						setProductShapes(shapesData || {});
-						console.log(pricingData);
+						
+						// Debug logging for new_ver
+						console.log('Shapes data:', shapesData);
+						console.log('new_ver value:', shapesData?.new_ver);
+						console.log('new_ver type:', typeof shapesData?.new_ver);
+						console.log('new_ver JSON:', JSON.stringify(shapesData?.new_ver));
+						
+						console.log('Pricing data:', pricingData);
 					}
 				}
 			} catch (err) {
@@ -62,6 +69,20 @@ const ProductDetails = ({
 			isMounted = false;
 		};
 	}, [showProductDetailModal]);
+
+	// Helper function to check if product is new version
+	const isNewVersion = (newVerValue) => {
+		if (!newVerValue) return false;
+		
+		// Convert to string and trim whitespace
+		const strValue = String(newVerValue).trim();
+		
+		// Check for various representations of "1"
+		return strValue === "1" || 
+			   strValue === " 1 " || 
+			   strValue === "1.0" ||
+			   parseInt(strValue) === 1;
+	};
 
 	// Helper function to get status badge styling
 	const getStatusBadgeClass = (status) => {
@@ -105,9 +126,7 @@ const ProductDetails = ({
 				<Modal.Header closeButton>
 					<Modal.Title>
 						{safeGet(productInfo, 'design_code', '')}
-						{(safeGet(productShapes, 'new_ver') === " 1 " || 
-						  safeGet(productShapes, 'new_ver') === 1 || 
-						  safeGet(productShapes, 'new_ver') === "1") && (
+						{isNewVersion(safeGet(productShapes, 'new_ver')) && (
 							<span className="text-danger ms-2" style={{ fontSize: '0.8rem', fontWeight: 'normal' }}>
 								(New version)
 							</span>
