@@ -95,17 +95,17 @@ const ProductDetails = ({
 				<Modal.Header closeButton>
 					<Modal.Title>
 						{productInfo.design_code}
-						{productShapes.new_ver === " 1 " && (
+						{productShapes && productShapes.new_ver === " 1 " && (
 							<span className="text-danger ms-2" style={{ fontSize: '0.8rem', fontWeight: 'normal' }}>
 								(New version)
 							</span>
 						)}
-						{productInfo.status && (
+						{productInfo.status && productInfo.status !== 'N/A' && (
 							<span 
 								className={`ms-2 ${getStatusBadgeClass(productInfo.status)}`} 
 								style={{ fontSize: '0.8rem', fontWeight: 'bold' }}
 							>
-								[{productInfo.status}]
+								[{productInfo.status.trim()}]
 							</span>
 						)}
 					</Modal.Title>
@@ -161,7 +161,7 @@ const ProductDetails = ({
 					<p>CZ Weight: {productMaterials.cz_weight || 'N/A'}</p> */}
 
 					<h5>ACCENTED STONES:</h5>
-					{Object.keys(productShapes)
+					{productShapes && Object.keys(productShapes)
 					.filter(key => key !== 'ProductId')
 					.map(key => (
 						<div key={key}>
