@@ -143,7 +143,7 @@ const ProductDetails = ({
 					<Modal.Title>
 						{safeGet(productInfo, 'design_code', '')}
 						{productShapes.new_ver == 1 && (
-							<span className="text-danger ms-2" style={{ fontSize: '0.8rem', fontWeight: 'normal' }}>
+							<span className="text-danger ms-2" style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>
 								(New version)
 							</span>
 						) }
