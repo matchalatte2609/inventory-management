@@ -142,11 +142,11 @@ const ProductDetails = ({
 				<Modal.Header closeButton>
 					<Modal.Title>
 						{safeGet(productInfo, 'design_code', '')}
-						{isNewVersion(safeGet(productShapes, 'new_ver')) && (
+						{productShapes.new_ver == 1 && (
 							<span className="text-danger ms-2" style={{ fontSize: '0.8rem', fontWeight: 'normal' }}>
 								(New version)
 							</span>
-						)}
+						) }
 						{safeGet(productInfo, 'status') && safeGet(productInfo, 'status') !== 'N/A' && (
 							<span 
 								className={`ms-2 ${getStatusBadgeClass(safeGet(productInfo, 'status'))}`} 
