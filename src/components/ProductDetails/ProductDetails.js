@@ -21,9 +21,11 @@ const ProductDetails = ({
 		let isMounted = true;
 		setLoading(true);
 
-		const fetchData = async () => {
+						const fetchData = async () => {
 			try {
 				if (showProductDetailModal.show && showProductDetailModal.id) {
+					console.log('=== FETCHING DATA FOR PRODUCT ID:', showProductDetailModal.id, '===');
+					
 					const productData = await productsApi.getProductById(
 						showProductDetailModal.id
 					);
@@ -36,6 +38,13 @@ const ProductDetails = ({
 					const pricingData = await pricingApi.getProductPricesById(
 						showProductDetailModal.id
 					);
+					
+					console.log('=== API RESPONSES ===');
+					console.log('Product data:', productData);
+					console.log('Shapes data:', shapesData);
+					console.log('Material data:', materialData);
+					console.log('Pricing data:', pricingData);
+					
 					if (isMounted) {
 						setProductInfo(productData || {});
 						setProductMaterials(materialData || {});
@@ -60,7 +69,7 @@ const ProductDetails = ({
 			} catch (err) {
 				if (isMounted) {
 					setError('Failed to fetch data. Please try again.');
-					console.error(err);
+					console.error('=== FETCH ERROR ===', err);
 				}
 			} finally {
 				if (isMounted) {
@@ -78,7 +87,7 @@ const ProductDetails = ({
 
 	// Helper function to check if product is new version
 	const isNewVersion = (newVerValue) => {
-		if (!newVerValue) return false;
+		if (!newVerValue && newVerValue !== 0) return false;
 		
 		// Convert to string and trim whitespace
 		const strValue = String(newVerValue).trim();
@@ -87,6 +96,7 @@ const ProductDetails = ({
 		return strValue === "1" || 
 			   strValue === " 1 " || 
 			   strValue === "1.0" ||
+			   newVerValue === 1 ||  // Direct number comparison
 			   parseInt(strValue) === 1;
 	};
 
