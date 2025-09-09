@@ -1,79 +1,70 @@
-/* App.css */
-
 .app-container {
 	display: flex;
 	height: 100vh;
 	flex-direction: column;
-}
-
-.sidebar {
-	width: 200px;
-	padding: 20px;
-	position: fixed;
-	height: 100%;
-	z-index: 1;
-	top: 0;
-	left: 0;
-	overflow-x: hidden;
+	background-color: #fafbfc;
 }
 
 .main-content {
-	position:relative;
+	position: relative;
 	flex-grow: 1;
-	background-color: #fff;
-	padding: 20px;
-	flex-grow: 1;
-	transition: margin-left 0.3s ease-in-out;
-}
-
-.sidebar.open + .main-content {
-	margin-left: 250px;
+	background-color: transparent;
+	padding: var(--spacing-lg);
+	transition: all 0.2s ease;
 }
 
 .header {
-	padding: 10px 0;
+	padding: var(--spacing-md) 0;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
 
 .product-list {
-	margin-top: 20px;
-	padding: 50px;
+	margin-top: var(--spacing-md);
+	padding: var(--spacing-lg);
 }
 
 .button {
-	padding: 10px 15px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: var(--spacing-sm) var(--spacing-md);
 	border: none;
 	cursor: pointer;
-	background: #dcc4b6;
-	border-radius: 30px;
+	background: var(--primary-color);
+	color: white;
+	border-radius: var(--border-radius-sm);
+	font-weight: 500;
+	transition: all 0.2s ease;
+	font-size: 14px;
 }
 
 .button:hover {
-	background-color: #593c2a;
+	background-color: var(--primary-hover);
+	transform: translateY(-1px);
+}
+
+.button:active {
+	transform: translateY(0);
 }
 
 .table-header {
 	display: flex;
 	justify-content: space-between;
-	font-weight: bold;
-	padding: 10px;
-	border-bottom: 2px solid #e0e0e0;
-}
-
-.sidebar {
-	width: 250px;
-	position: fixed;
-	height: 100vh;
+	font-weight: 600;
+	padding: var(--spacing-sm) var(--spacing-md);
+	border-bottom: 1px solid var(--border-color);
+	background-color: var(--accent-color);
+	border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 @media (max-width: 600px) {
 	.product-list {
-		width: 320px;
-		padding-right: 10px;
-		padding: 0px;
+		padding: var(--spacing-md);
+	}
+	
+	.main-content {
+		padding: var(--spacing-md);
 	}
 }
-
-/* Add additional styling as needed */

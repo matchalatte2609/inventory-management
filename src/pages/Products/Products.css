@@ -2,47 +2,79 @@
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
 }
 
 .product-list-header {
 	display: flex;
 	flex-direction: column;
-	padding: 10px;
-	margin-bottom: 20px; /* Adjust as per your spacing needs */
+	padding: 0;
+	margin-bottom: var(--spacing-lg);
 }
 
 .filters {
 	display: flex;
-	justify-content: flex-end; /* Align filter buttons to the right */
-	gap: 10px; /* Spacing between buttons */
-	margin-bottom: 10px; /* Space between buttons and product headers */
+	justify-content: flex-end;
+	gap: var(--spacing-sm);
+	margin-bottom: var(--spacing-md);
+	flex-wrap: wrap;
 }
 
 .filter-button {
-	padding: 8px 16px; /* Sample padding, adjust as needed */
-	background-color: white; /* Sample background color */
-	color: black;
-	border: solid 1px black;
+	padding: var(--spacing-sm) var(--spacing-md);
+	background-color: white;
+	color: var(--text-primary);
+	border: 1px solid var(--border-color);
 	cursor: pointer;
-	border-radius: 10px; /* Optional: for rounded corners */
-	/* No margin-left needed because gap takes care of spacing */
+	border-radius: var(--border-radius-sm);
+	font-size: 14px;
+	font-weight: 500;
+	transition: all 0.2s ease;
 }
 
 .filter-button:hover {
-	background-color: #3700b3; /* Darker shade on hover */
+	background-color: var(--primary-color);
+	color: white;
+	border-color: var(--primary-color);
+	transform: translateY(-1px);
+}
+
+.filter-button.active {
+	background-color: var(--primary-color);
+	color: white;
+	border-color: var(--primary-color);
 }
 
 .product-headers {
 	display: grid;
-	grid-template-columns: 2fr 1fr 1fr 1fr 1fr 2fr; /* Adjust the fractions to match your layout */
-	gap: 10px; /* This will give space between your columns */
+	grid-template-columns: 2fr 1fr 1fr 1fr 1fr 2fr;
+	gap: var(--spacing-md);
 	font-weight: 600;
 	text-transform: uppercase;
-	padding: 0px 0;
+	padding: var(--spacing-md);
+	background-color: var(--accent-color);
+	border-radius: var(--border-radius);
+	color: var(--text-secondary);
+	font-size: 12px;
+	letter-spacing: 0.5px;
 }
 
-@media (max-width: 600px){
-	.product-list {
-	margin-top: 60px; /* Adjust top margin as needed, if at all */
+@media (max-width: 768px) {
+	.filters {
+		justify-content: center;
+	}
+	
+	.product-headers {
+		grid-template-columns: 1fr 1fr 1fr;
+		gap: var(--spacing-sm);
+		padding: var(--spacing-sm);
+		font-size: 11px;
+	}
 }
+
+@media (max-width: 600px) {
+	.product-page-container {
+		padding: var(--spacing-sm);
+	}
 }

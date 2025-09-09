@@ -1,90 +1,127 @@
 .product-item {
 	display: flex;
 	align-items: center;
-	background-color: #fff; /* Assuming white background */
-	box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Adding subtle shadow */
-	margin-bottom: 10px; /* Add space between items */
-	padding: 10px; /* Add padding inside items */
-	border-radius: 6px; /* Rounded corners like in the reference */
+	background-color: white;
+	box-shadow: var(--shadow-sm);
+	border: 1px solid var(--border-color);
+	margin-bottom: var(--spacing-sm);
+	padding: var(--spacing-md);
+	border-radius: var(--border-radius);
+	transition: all 0.2s ease;
+}
 
-  }
+.product-item:hover {
+	box-shadow: var(--shadow-md);
+	transform: translateY(-1px);
+}
   
-  .product-image-container {
-	flex: 0 0 auto; /* Do not grow or shrink */
-	width: 80px; /* Adjust the width as necessary */
-	height: 80px; /* Adjust the height as necessary */
-	padding: 5px;
+.product-image-container {
+	flex: 0 0 auto;
+	width: 64px;
+	height: 64px;
+	padding: var(--spacing-xs);
 	display: flex;
 	align-items: center;
 	justify-content: center;
-  }
+	background-color: var(--accent-color);
+	border-radius: var(--border-radius-sm);
+}
   
-  .product-image {
+.product-image {
 	max-width: 100%;
 	max-height: 100%;
-	display: block; /* Remove any extra space below the image */
-  }
+	display: block;
+	border-radius: var(--border-radius-sm);
+}
   
-  /* Add styles for name, category, and other text fields */
-  .product-name, .product-category, .product-id, .product-stock-level, .product-status {
+.product-name, .product-category, .product-id, .product-stock-level, .product-status {
 	flex: 1;
-	margin: 0 10px; /* Add some horizontal spacing */
-	overflow: hidden; /* In case content is too wide */
+	margin: 0 var(--spacing-md);
+	overflow: hidden;
 	white-space: nowrap;
-	text-overflow: ellipsis; /* Add an ellipsis for overflow */
-  }
-  
-  /* Style the edit and delete buttons */
-  .edit-button,
-  .delete-button {
-	background-color: #f2f2f2; /* Light grey background */
-	border: none;
-	padding: 5px 10px;
-	border-radius: 4px;
-	cursor: pointer;
-	margin-left: 5px; /* Add space between buttons */
-	color: #333; /* Darker text for better contrast */
-  }
-  
-  .edit-button:hover,
-  .delete-button:hover {
-	background-color: #e0e0e0; /* Slightly darker on hover */
-  }
-  
-  /* Additional status-specific styles may be added as needed */
+	text-overflow: ellipsis;
+	font-size: 14px;
+}
 
-  .product-stock-level {
-	position: relative; /* Contain the absolute bar */
-	flex: 1;
-	text-align: center; /* Center the text */
-	margin: 0 10px;
-  }
+.product-name {
+	font-weight: 600;
+	color: var(--text-primary);
+}
+
+.product-category, .product-id {
+	color: var(--text-secondary);
+}
   
-  .stock-level-bar-container {
+.edit-button,
+.delete-button {
+	background-color: var(--accent-color);
+	border: 1px solid var(--border-color);
+	padding: var(--spacing-xs) var(--spacing-sm);
+	border-radius: var(--border-radius-sm);
+	cursor: pointer;
+	margin-left: var(--spacing-xs);
+	color: var(--text-secondary);
+	font-size: 12px;
+	font-weight: 500;
+	transition: all 0.2s ease;
+}
+  
+.edit-button:hover {
+	background-color: var(--primary-color);
+	color: white;
+	border-color: var(--primary-color);
+}
+
+.delete-button:hover {
+	background-color: #ef4444;
+	color: white;
+	border-color: #ef4444;
+}
+  
+.product-stock-level {
+	position: relative;
+	flex: 1;
+	text-align: center;
+	margin: 0 var(--spacing-md);
+}
+  
+.stock-level-bar-container {
 	position: absolute;
-	bottom: 0;
+	bottom: -2px;
 	left: 0;
 	width: 100%;
-	height: 4px; /* Height of the stock level bar */
-	background-color: #f0f0f0; /* Light background for the bar */
-  }
+	height: 3px;
+	background-color: var(--border-color);
+	border-radius: 2px;
+}
   
-  .stock-level-bar {
+.stock-level-bar {
 	height: 100%;
-	background-color: #76b852; /* Use your app's color palette here */
-  }
+	background-color: var(--primary-color);
+	border-radius: 2px;
+	transition: width 0.3s ease;
+}
 
-  @media (max-width: 600px) {
-    .product-item {
-        flex-direction: column;
-        padding: 5px;
-    }
+@media (max-width: 600px) {
+	.product-item {
+		flex-direction: column;
+		padding: var(--spacing-sm);
+		align-items: flex-start;
+	}
 
-    .product-image-container {
-        width: 80%;
-    }
+	.product-image-container {
+		width: 100%;
+		height: 120px;
+		margin-bottom: var(--spacing-sm);
+	}
 
-    .product-id, .product-category, .product-name {
-        font-size: 14px;
-    }
+	.product-name, .product-category, .product-id, .product-stock-level, .product-status {
+		margin: var(--spacing-xs) 0;
+		font-size: 13px;
+		width: 100%;
+	}
+	
+	.edit-button, .delete-button {
+		margin: var(--spacing-xs) var(--spacing-xs) 0 0;
+	}
 }

@@ -1,32 +1,40 @@
 .product-list-header {
 	display: flex;
 	justify-content: space-between;
-	background-color: #f8f8f8; /* Light grey background */
-	padding: 10px;
-	border-radius: 6px; /* Match the rounded corners of items */
-	margin-bottom: 10px; /* Space between header and list */
-  }
+	background-color: var(--accent-color);
+	padding: var(--spacing-md);
+	border-radius: var(--border-radius);
+	margin-bottom: var(--spacing-md);
+	border: 1px solid var(--border-color);
+}
   
-  /* Each header item should have consistent spacing and font weight */
-  .product-list-header > div {
-	text-transform: uppercase; /* All text in uppercase */
-	font-weight: 600; /* Make the header text bold */
+.product-list-header > div {
+	text-transform: uppercase;
+	font-weight: 600;
 	flex: 1;
 	text-align: left;
-	padding: 0 10px;
-  }
+	padding: 0 var(--spacing-sm);
+	color: var(--text-secondary);
+	font-size: 12px;
+	letter-spacing: 0.5px;
+}
   
-  /* The product list container should not have much styling, */
-  /* it's mainly for layout purposes */
-  .product-list {
+.product-list {
 	display: flex;
 	flex-direction: column;
-	flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 20px;
-  }
-  @media (max-width: 400px) {
-	.product-list{
-		width: 150px;
+	background-color: white;
+	border-radius: var(--border-radius);
+	box-shadow: var(--shadow-sm);
+	border: 1px solid var(--border-color);
+	overflow: hidden;
+}
+
+@media (max-width: 600px) {
+	.product-list {
+		margin: var(--spacing-sm);
 	}
-  }
+	
+	.product-list-header {
+		padding: var(--spacing-sm);
+	}
+}
