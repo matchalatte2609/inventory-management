@@ -10,9 +10,15 @@ const Products = () => {
 	const [productListData, setProductListData] = useState([]);
 
 	useEffect(() => {
-		productsApi.getAllProducts().then((data) => {
-			setProductListData(data);
-		});
+		productsApi.getAllProducts()
+			.then((data) => {
+				// Ensure data is an array, fallback to empty array if not
+				setProductListData(Array.isArray(data) ? data : []);
+			})
+			.catch((error) => {
+				console.error('Error fetching products:', error);
+				setProductListData([]); // Set empty array on error
+			});
 	}, []);
 
 	const [sortOption, setSortOption] = useState('');
@@ -155,15 +161,22 @@ const Products = () => {
 				</div> */}
 			</div>
 			<div className="product-list">
-				{productListData.map((product) => (
-					<div
-						onClick={() => {
-							setShowProductDetailModal({ id: product.ProductId, show: true });
-						}}
-					>
-						<ProductItem key={product.id} {...product} />
+				{productListData && productListData.length > 0 ? (
+					productListData.map((product) => (
+						<div
+							key={product.id || product.ProductId}
+							onClick={() => {
+								setShowProductDetailModal({ id: product.ProductId, show: true });
+							}}
+						>
+							<ProductItem key={product.id} {...product} />
+						</div>
+					))
+				) : (
+					<div className="no-products-message">
+						No products available or loading...
 					</div>
-				))}
+				)}
 			</div>
 		</div>
 	);

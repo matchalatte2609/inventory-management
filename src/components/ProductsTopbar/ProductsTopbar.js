@@ -3,18 +3,34 @@ import productsApi from '../../api/products';
 import searchIcon from "../Assets/magnifying-glass.png";
 import './ProductsTopbar.css'
 
-let products;
-productsApi.getAllProducts().then((data) => {
-	products = data;
-});
 const SearchBar = ({ setProductListData }) => {
 	const [searchTerm, setSearchTerm] = useState('');
+	const [products, setProducts] = useState([]);
+
+	// Load products when component mounts
+	React.useEffect(() => {
+		productsApi.getAllProducts()
+			.then((data) => {
+				setProducts(Array.isArray(data) ? data : []);
+			})
+			.catch((error) => {
+				console.error('Error fetching products for search:', error);
+				setProducts([]);
+			});
+	}, []);
 
 	const handleSearch = (event) => {
 		const { value } = event.target;
 		setSearchTerm(value);
+
+		// Safety check: ensure products is an array
+		if (!Array.isArray(products)) {
+			console.warn('Products is not an array:', products);
+			return;
+		}
+
 		const foundProducts = products.filter((product) =>
-			product.design_code.toLowerCase().includes(value.toLowerCase())
+			product.design_code && product.design_code.toLowerCase().includes(value.toLowerCase())
 		);
 
 		setProductListData(foundProducts);

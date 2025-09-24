@@ -18,6 +18,7 @@ import ScrollToTopButton from './components/ScrollToTopBtn/ScrollToTopBtn.js';
 const App = () => {
 	const { instance, accounts } = useMsal();
 	const [graphData, setGraphData] = useState(null);
+	const [showWelcome, setShowWelcome] = useState(true);
 
 	const sideNavRef = useRef(null);
 
@@ -25,9 +26,15 @@ const App = () => {
 		// Add event listener to the document object
 		document.addEventListener('mousedown', handleClickOutside);
 
+		// Hide welcome screen after 3 seconds
+		const timer = setTimeout(() => {
+			setShowWelcome(false);
+		}, 3000);
+
 		// Remove event listener when the component unmounts
 		return () => {
 			document.removeEventListener('mousedown', handleClickOutside);
+			clearTimeout(timer);
 		};
 	}, []);
 
@@ -71,6 +78,24 @@ const App = () => {
 			// If logged in already
 			<Router>
 				<div className="app-container">
+					{/* Welcome Screen */}
+					{showWelcome && (
+						<div className="welcome-overlay">
+							<div className="welcome-content">
+								<div className="welcome-animation">
+									<div className="welcome-emoji">🎉</div>
+									<h1 className="welcome-title">Welcome to Tierra Inventory!</h1>
+									<p className="welcome-subtitle">Hello, {accounts[0].name}! 👋</p>
+									<div className="welcome-sparkles">
+										<span className="sparkle">✨</span>
+										<span className="sparkle">⭐</span>
+										<span className="sparkle">💎</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					)}
+
 					{/* <div className="sidebar" ref={sideNavRef}>
 						<Sidebar username={accounts[0].name} handleLogout={handleLogout} />
 					</div> */}

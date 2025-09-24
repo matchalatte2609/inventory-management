@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Button, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import brandIcon from '../Assets/tierra-logo.png';
 import homeIcon from '../Assets/home-icon.png';
 import productsIcon from '../Assets/ring-icon.png';
