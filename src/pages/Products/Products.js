@@ -6,44 +6,6 @@ import Topbar from '../../components/ProductsTopbar/ProductsTopbar.js';
 import './Products.css';
 import ProductDetails from '../../components/ProductDetails/ProductDetails.js';
 
-const BackToTop = () => {
-	const [isVisible, setIsVisible] = useState(false);
-
-	useEffect(() => {
-		const toggleVisibility = () => {
-			if (window.pageYOffset > 300) {
-				setIsVisible(true);
-			} else {
-				setIsVisible(false);
-			}
-		};
-
-		window.addEventListener('scroll', toggleVisibility);
-		return () => window.removeEventListener('scroll', toggleVisibility);
-	}, []);
-
-	const scrollToTop = () => {
-		window.scrollTo({
-			top: 0,
-			behavior: 'smooth'
-		});
-	};
-
-	return (
-		<>
-			{isVisible && (
-				<button
-					onClick={scrollToTop}
-					className="back-to-top"
-					aria-label="Back to top"
-				>
-					↑
-				</button>
-			)}
-		</>
-	);
-};
-
 const Products = () => {
 	const [productListData, setProductListData] = useState([]);
 
@@ -104,7 +66,6 @@ const Products = () => {
 	return (
 		<div className="product-page-container">
 			<Topbar setProductListData={setProductListData} />
-			<BackToTop />
 
 			<div className="product-list-header">
 				<div className="filters">
