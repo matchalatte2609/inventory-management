@@ -11,8 +11,11 @@
 	border: 1px solid #e0e0e0;
 	border-radius: 10px;
 	outline: none;
-	position:fixed;
-
+	position: sticky;
+	top: 0;
+	background-color: white;
+	z-index: 100;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .search-icon {
