@@ -144,7 +144,7 @@ const ProductDetails = ({
 						{safeGet(productInfo, 'design_code', '')}
 						{productShapes.new_ver == 1 && (
 							<span className="text-danger ms-2" style={{ fontSize: '0.8rem', fontWeight: 'bold' }}>
-								(New version)
+								(Tối ưu lòng nhẫn? (1=Yes,0=No))
 							</span>
 						) }
 						{safeGet(productInfo, 'status') && safeGet(productInfo, 'status') !== 'N/A' && (
